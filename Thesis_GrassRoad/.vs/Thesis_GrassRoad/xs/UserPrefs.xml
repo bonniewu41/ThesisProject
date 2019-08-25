@@ -1,0 +1,23 @@
+﻿<Properties StartupConfiguration="{B12345A1-0B17-E8E4-887E-DDCDC0F27FEB}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/GrassRoadRace/Script/Target.cs">
+    <Files>
+      <File FileName="Assets/GrassRoadRace/Script/CameraMove.cs" Line="24" Column="1" />
+      <File FileName="Assets/GrassRoadRace/Script/GunFire.cs" Line="36" Column="43" />
+      <File FileName="Assets/GrassRoadRace/Script/Target.cs" Line="25" Column="2" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Thesis_GrassRoad" expanded="True" selected="True" />
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="60ff8585-a8b7-4fc2-a012-cf55f129ad10" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
