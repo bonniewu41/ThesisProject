@@ -55,8 +55,6 @@ public class CameraMove : MonoBehaviour {
         yaw += speedH * Input.GetAxis("Mouse X");
         pitch -= speedV * Input.GetAxis("Mouse Y");
         mainCamera.transform.localRotation = Quaternion.Euler(pitch, yaw + 180, 0.0f);
-
-        // Debug.Log("yaw " + yaw + "   pitch " + pitch);
     }
 
     void MoveLR()
@@ -73,6 +71,30 @@ public class CameraMove : MonoBehaviour {
 
         transform.position = pos;
     }
+
+
+    /*-----------------------
+    Rotate the game object
+    -----------------------*/
+    public void rotate(float deltaX, float deltaY)
+    {
+        //1. Rotate around x-axis & y-axis
+        Vector3 angles = transform.localRotation.eulerAngles;
+        angles.x += deltaX;
+        angles.y += deltaY;
+
+        //2. Constrain the angle around x-axis in [0 ~ 90] or [270 ~ 360] degrees
+        if (angles.x > 90f && angles.x < 270f)
+        {
+            if (deltaX > 0) angles.x = 90f;
+            else angles.x = 270f;
+        }
+
+        //3. Assign rotation
+        transform.localRotation = Quaternion.Euler(angles);
+    }
+
+
 
 
 

@@ -62,9 +62,28 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\DemoShoot\Scripts\Bullet.cs" />
+    <Compile Include="Assets\DemoShoot\Scripts\Enemy.cs" />
+    <Compile Include="Assets\DemoShoot\Scripts\Magazine.cs" />
+    <Compile Include="Assets\DemoShoot\Scripts\Manager.cs" />
+    <Compile Include="Assets\DemoShoot\Scripts\Movement.cs" />
+    <Compile Include="Assets\DemoShoot\Scripts\Player.cs" />
+    <Compile Include="Assets\DemoShoot\Scripts\SelfDestroy.cs" />
+    <Compile Include="Assets\DemoShoot\Scripts\Shooting.cs" />
     <Compile Include="Assets\GrassRoadRace\Script\CameraMove.cs" />
+    <Compile Include="Assets\GrassRoadRace\Script\CollectCoin.cs" />
     <Compile Include="Assets\GrassRoadRace\Script\GunFire.cs" />
+    <Compile Include="Assets\GrassRoadRace\Script\ScoringSystem.cs" />
     <Compile Include="Assets\GrassRoadRace\Script\Target.cs" />
+    <Compile Include="Assets\PenguRace\Script\CameraMotor.cs" />
+    <Compile Include="Assets\PenguRace\Script\Coin.cs" />
+    <Compile Include="Assets\PenguRace\Script\GameManager.cs" />
+    <Compile Include="Assets\PenguRace\Script\LevelManager.cs" />
+    <Compile Include="Assets\PenguRace\Script\MobileInput.cs" />
+    <Compile Include="Assets\PenguRace\Script\Piece.cs" />
+    <Compile Include="Assets\PenguRace\Script\PieceSpawner.cs" />
+    <Compile Include="Assets\PenguRace\Script\PlayerMotor.cs" />
+    <Compile Include="Assets\PenguRace\Script\Segment.cs" />
     <Compile Include="Assets\Revolver Kit VR\Demo\Scripts\SVTargetDemo.cs" />
     <Compile Include="Assets\Revolver Kit VR\Scripts\SVBullet.cs" />
     <Compile Include="Assets\Revolver Kit VR\Scripts\SVControllerInput.cs" />
