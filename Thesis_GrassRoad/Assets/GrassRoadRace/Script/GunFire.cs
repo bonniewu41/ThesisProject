@@ -5,9 +5,6 @@ using UnityEngine;
 public class GunFire : MonoBehaviour
 {
 
-    public float damage = 10f;
-    public float range = 100f;
-
     public Camera fpsCam;
     public ParticleSystem muzzleFlash;
     public AudioSource gunShot;
@@ -31,12 +28,12 @@ public class GunFire : MonoBehaviour
         
 
         RaycastHit hit;
-        if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
+        if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit))
         {
             Target target = hit.transform.GetComponent<Target>();
             if (target != null)
             {
-                target.TakeDamage(damage);
+                target.TakeDamage();
             }
         }
     }

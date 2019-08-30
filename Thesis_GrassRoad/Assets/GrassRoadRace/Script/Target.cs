@@ -8,7 +8,7 @@ public class Target : MonoBehaviour
 {
 
     public AudioSource collectSound;
-    public float health = 10f;
+    public ParticleSystem hitEffects;
     public int rotateSpeed;
 
     private void Start()
@@ -21,14 +21,17 @@ public class Target : MonoBehaviour
         transform.Rotate(0, rotateSpeed, 0, Space.World);
     }
 
-    public void TakeDamage(float amount)
+
+    public void TakeDamage()
     {
         ScoringSystem.scoreValue += 10;
         collectSound.Play();
-        health -= amount;
-        if (health <= 0f) {
+        //hitEffects.Play();
+
+        //health -= amount;
+        //if (health <= 0f) {
             Die();
-        }
+        //}
     }
 
     void Die()
