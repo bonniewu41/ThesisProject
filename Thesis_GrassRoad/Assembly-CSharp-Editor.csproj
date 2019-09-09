@@ -63,6 +63,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Revolver Kit VR\Editor\DefinesManager.cs" />
+    <Compile Include="Assets\VRSample\Editor\CrossPlatformInput\CrossPlatformInputInitialize.cs" />
+    <Compile Include="Assets\VRSample\TutorialInfo\Scripts\Editor\ReadmeEditor.cs" />
     <Reference Include="UnityEditor.TestRunner">
       <HintPath>/Users/Bonnie 1/Documents/Unity/VR_environment/ThesisProject/Thesis_GrassRoad/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
     </Reference>

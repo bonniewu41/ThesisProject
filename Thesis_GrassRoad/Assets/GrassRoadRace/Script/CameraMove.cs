@@ -16,6 +16,7 @@ public class CameraMove : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        Cursor.lockState = CursorLockMode.Locked;
         mainCamera.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, -3);
         //mainCamera.transform.localPosition = new Vector3 ( 0, 0, 0 );
 		//mainCamera.transform.localRotation = Quaternion.Euler (18, 180, 0);
@@ -27,8 +28,19 @@ public class CameraMove : MonoBehaviour {
     {
         FollowCam();
         MoveLR();
+        MouseAppear();
 
     }
+
+
+    void MouseAppear()
+    {
+        if (Input.GetButtonDown("Cancel"))
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+    }
+
 
     void FixedUpdate()
 	{
@@ -73,26 +85,44 @@ public class CameraMove : MonoBehaviour {
     }
 
 
+
+    /*-----------------------
+    Do rotation from mouse
+    -----------------------*/
+    //void doRotation()
+    //{
+    //    movement.rotate(
+    //        -mouseSensitivity * Input.GetAxis("Mouse Y"),
+    //            mouseSensitivity * Input.GetAxis("Mouse X")
+    //    );
+    //}
+
     /*-----------------------
     Rotate the game object
     -----------------------*/
-    public void rotate(float deltaX, float deltaY)
-    {
-        //1. Rotate around x-axis & y-axis
-        Vector3 angles = transform.localRotation.eulerAngles;
-        angles.x += deltaX;
-        angles.y += deltaY;
+    //public void rotate(float deltaX, float deltaY)
+    //{
+    //    //1. Rotate around x-axis & y-axis
+    //    Vector3 angles = transform.localRotation.eulerAngles;
+    //    angles.x += deltaX;
+    //    angles.y += deltaY;
 
-        //2. Constrain the angle around x-axis in [0 ~ 90] or [270 ~ 360] degrees
-        if (angles.x > 90f && angles.x < 270f)
-        {
-            if (deltaX > 0) angles.x = 90f;
-            else angles.x = 270f;
-        }
+    //    //2. Constrain the angle around x-axis in [0 ~ 90] or [270 ~ 360] degrees
+    //    if (angles.x > 90f && angles.x < 270f)
+    //    {
+    //        if (deltaX > 0) angles.x = 90f;
+    //        else angles.x = 270f;
+    //    }
 
-        //3. Assign rotation
-        transform.localRotation = Quaternion.Euler(angles);
-    }
+    //    //3. Assign rotation
+    //    transform.localRotation = Quaternion.Euler(angles);
+    //}
+
+
+
+
+
+
 
 
 

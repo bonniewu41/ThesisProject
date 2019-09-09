@@ -8,7 +8,7 @@ public class Target : MonoBehaviour
 {
 
     public AudioSource collectSound;
-    public ParticleSystem hitEffects;
+    //public ParticleSystem hitEffects;
     public int rotateSpeed;
 
     private void Start()
@@ -28,10 +28,7 @@ public class Target : MonoBehaviour
         collectSound.Play();
         //hitEffects.Play();
 
-        //health -= amount;
-        //if (health <= 0f) {
-            Die();
-        //}
+        Die();
     }
 
     void Die()
