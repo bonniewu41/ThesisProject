@@ -21,7 +21,13 @@ public class PathManager : MonoBehaviour
         activePaths = new List<GameObject>();
         for (int i = 0; i < amtPathOnScreen; i++)
         {
-            SpawnPath();
+            if (i < 2)
+            {
+                SpawnPath(0);
+            } else
+            {
+                SpawnPath();
+            }
         }
     }
 
@@ -35,21 +41,32 @@ public class PathManager : MonoBehaviour
         }
     }
 
+
     private void SpawnPath(int prefabIndex = -1)
     {
         GameObject path;
-        path = Instantiate(pathPrefabs[RandomPrefabIndex()]) as GameObject;
+
+        if (prefabIndex == -1)
+        {
+            path = Instantiate(pathPrefabs[RandomPrefabIndex()]) as GameObject;
+        } else
+        {
+            path = Instantiate(pathPrefabs[prefabIndex]) as GameObject;
+        }
+        
         path.transform.SetParent(transform);
         path.transform.position = Vector3.forward * spawnZ;
         spawnZ += pathLength;
         activePaths.Add(path);
     }
 
+
     private void DeletePath()
     {
         Destroy(activePaths[0]);
         activePaths.RemoveAt(0);
     }
+
 
     private int RandomPrefabIndex()
     {
