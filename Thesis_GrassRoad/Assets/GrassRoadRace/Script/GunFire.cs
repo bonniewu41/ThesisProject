@@ -25,8 +25,6 @@ public class GunFire : MonoBehaviour
         Animation gunRecoil = GetComponent<Animation>();
         gunRecoil.Play("gunRecoil");
 
-        
-
         RaycastHit hit;
         if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit))
         {
