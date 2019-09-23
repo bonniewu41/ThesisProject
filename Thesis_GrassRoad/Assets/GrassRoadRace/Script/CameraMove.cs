@@ -72,7 +72,8 @@ public class CameraMove : MonoBehaviour
         // Calculate move vector
         Vector3 moveVector = Vector3.zero;
         moveVector.x = (targetPos - transform.position).normalized.x * moveSpeed;
-        moveVector.y = -0.1f;
+        //moveVector.y = -0.1f;
+        moveVector.y = -0.001f;
         moveVector.z = moveSpeed;
 
 
