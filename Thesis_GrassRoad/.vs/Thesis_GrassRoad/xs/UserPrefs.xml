@@ -1,16 +1,16 @@
 ﻿<Properties StartupConfiguration="{B12345A1-0B17-E8E4-887E-DDCDC0F27FEB}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/GrassRoadRace/Script/Target.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/GrassRoadRace/Script/CameraMove.cs">
     <Files>
-      <File FileName="Assets/GrassRoadRace/Script/CameraMove.cs" Line="17" Column="42" />
-      <File FileName="Assets/GrassRoadRace/Script/GunFire.cs" Line="26" Column="37" />
-      <File FileName="Assets/GrassRoadRace/Script/Target.cs" Line="10" Column="37" />
+      <File FileName="Assets/GrassRoadRace/Script/CameraMove.cs" Line="12" Column="24" />
+      <File FileName="Assets/GrassRoadRace/Script/GunFire.cs" Line="33" Column="14" />
+      <File FileName="Assets/GrassRoadRace/Script/Target.cs" Line="12" Column="28" />
+      <File FileName="Assets/GrassRoadRace/Script/HitObstacle.cs" Line="20" Column="6" />
       <File FileName="Assets/GrassRoadRace/Script/ScoringSystem.cs" Line="9" Column="34" />
       <File FileName="Assets/GrassRoadRace/Script/PathManager.cs" Line="64" Column="9" />
       <File FileName="Assets/DemoShoot/Scripts/Shooting.cs" Line="41" Column="15" />
       <File FileName="Assets/DemoShoot/Scripts/Movement.cs" Line="70" Column="1" />
       <File FileName="Assets/DemoShoot/Scripts/Player.cs" Line="1" Column="1" />
       <File FileName="Assets/DemoShoot/Scripts/Manager.cs" Line="37" Column="17" />
-      <File FileName="Assets/GrassRoadRace/Script/HitObstacle.cs" Line="12" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
