@@ -13,50 +13,148 @@ public class CameraMove : MonoBehaviour
     public float moveSpeed = 3.0f;
     public float mouseSensitivity = 1f;
 
+    public float xVal = 0;
+    public float yVal = 0;
+    public float zVal = 3;
+
     //Private variables
     private const float PATH_WIDTH = 1.15f;
     private CharacterController controller;
     private int desiredLane = 1; // 0 = left, 1 = middle, 2 = right
+    private Vector3 moveVector = Vector3.zero;
 
 
 
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        controller = GetComponent<CharacterController>();
+        //controller = GetComponent<CharacterController>();
     }
 
 
     void Update()
     {
 
-        //ForwardMvmt();
-        Movement();
-        CamRotation();
+        ForwardMvmt();
+        //Movement();
+        //CamRotation();
         UnlockCursor();
     }
 
 
 
-    //void ForwardMvmt()
-    //{
-    //    this.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, moveSpeed);
-    //}
+    void ForwardMvmt()
+    {
+        
+
+        //GetComponent<Rigidbody>().velocity = new Vector3(0, 0, moveSpeed);
+        
+
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            xVal = -3;
+            zVal = 0;
+            GetComponent<Rigidbody>().angularVelocity = new Vector3(0, -2, 0);
+            StartCoroutine(StopRotation());
+        }
+
+
+        GetComponent<Rigidbody>().velocity = new Vector3(xVal, yVal, zVal);
+
+    }
+
+    IEnumerator StopRotation()
+    {
+        yield return new WaitForSeconds(.8f);
+        GetComponent<Rigidbody>().angularVelocity = new Vector3(0, 0, 0);
+        GetComponent<Transform>().eulerAngles = new Vector3(0, -90, 0);
+    }
+    
 
 
     void Movement()
     {
+        //this.transform.Rotate(0, Input.GetAxisRaw("Horizontal"), 0);
+
+        //Vector3 currentPosition = transform.TransformPoint(Vector3.zero);
+
         // Gather input on which lane we should be
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            MoveLane(false);
-        }
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+            
+
+            this.transform.Rotate(Vector3.up, -90);
+            moveVector.x = -moveSpeed;
+            moveVector.y = -0.001f;
+            //moveVector.z = currentPosition.z;
+            moveVector.z = 0;
+
+            //controller.Move(moveVector * Time.deltaTime);
+
+            //moveVector.z = this.transform.position.z;
+            //moveVector.x = -moveSpeed;
+            //controller.Move(moveVector * Time.deltaTime);
+
+            //if (canTurn)
+            //{
+            //TurnLeft();
+
+            //}
+            //else
+            //{
+            //MoveLane(false);
+            //}
+
+        } else
         {
-            MoveLane(true);
+            GoStraight();
+
+            //this.transform.Rotate(Vector3.up, -90);
+
+
+            //controller.Move(moveVector * Time.deltaTime);
         }
+        //if (Input.GetKeyDown(KeyCode.RightArrow))
+        //{
+        //    //TurnRight();
+
+        //    //if (canTurn)
+        //    //{
+        //    TurnRight();
+        //    //}
+        //    //else
+        //    //{
+        //    //MoveLane(true);
+        //    //}
+        //}
 
 
+        //// Calculate where we should be in the future
+        //Vector3 targetPos = transform.position.z * Vector3.forward;
+        //if (desiredLane == 0)
+        //{
+        //    targetPos += Vector3.left * PATH_WIDTH;
+        //}
+        //else if (desiredLane == 2)
+        //{
+        //    targetPos += Vector3.right * PATH_WIDTH;
+        //}
+
+
+        //// Calculate move vector
+        ////Vector3 moveVector = Vector3.zero;
+        //moveVector.x = (targetPos - transform.position).normalized.x * moveSpeed;
+        //moveVector.y = -0.001f;
+        //moveVector.z = moveSpeed;
+
+
+        // Move Camera
+        //controller.Move(moveVector * Time.deltaTime);
+
+    }
+
+    private Vector3 GoStraight()
+    {
         // Calculate where we should be in the future
         Vector3 targetPos = transform.position.z * Vector3.forward;
         if (desiredLane == 0)
@@ -70,16 +168,12 @@ public class CameraMove : MonoBehaviour
 
 
         // Calculate move vector
-        Vector3 moveVector = Vector3.zero;
+        //Vector3 moveVector = Vector3.zero;
         moveVector.x = (targetPos - transform.position).normalized.x * moveSpeed;
-        //moveVector.y = -0.1f;
         moveVector.y = -0.001f;
         moveVector.z = moveSpeed;
 
-
-        // Move Camera
-        controller.Move(moveVector * Time.deltaTime);
-
+        return moveVector;
     }
 
 
@@ -88,6 +182,21 @@ public class CameraMove : MonoBehaviour
         desiredLane += (goingRight) ? 1 : -1;
         desiredLane = Mathf.Clamp(desiredLane, 0, 2);
     }
+
+
+    void TurnLeft()
+    {
+        this.transform.Rotate(Vector3.up, -90);
+        //return moveVector.x = -moveSpeed;
+        //controller.Move(moveVector * Time.deltaTime);
+    }
+
+
+    void TurnRight()
+    {
+        this.transform.Rotate(Vector3.up, 90);
+    }
+
 
 
     void CamRotation()
