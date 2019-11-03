@@ -10,12 +10,15 @@ public class CameraMove : MonoBehaviour
     //Public variables
     public float yaw;
     public float pitch;
-    public float moveSpeed = 3.0f;
+    public float moveSpeed = 2.0f;
     public float mouseSensitivity = 1f;
 
     public float xVal = 0;
     public float yVal = 0;
     public float zVal = 3;
+
+    public Rigidbody cam;
+    public Vector3 camMovement;
 
     //Private variables
     private const float PATH_WIDTH = 1.15f;
@@ -24,90 +27,149 @@ public class CameraMove : MonoBehaviour
     private Vector3 moveVector = Vector3.zero;
     private int left_curr = 1;
     private int right_curr = 1;
+    private bool isColliding;
+    private bool canTurn;
+
 
 
 
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        cam = GetComponent<Rigidbody>();
+        cam.isKinematic = false;
         //controller = GetComponent<CharacterController>();
     }
 
 
     void Update()
     {
-
-        ForwardMvmt();
+        //ForwardMvmt();
         //Movement();
-        //CamRotation();
+        CamRotation();
         UnlockCursor();
+
+        // forward and sideways movement
+        camMovement = new Vector3(Input.GetAxis("Horizontal"), 0, 1);
+    }
+
+    void FixedUpdate()
+    {
+        TurnMvmt();
+        //SideMvmt(camMovement);
     }
 
 
 
+    void SideMvmt(Vector3 direction)
+    {
+        cam.MovePosition((Vector3)transform.position + (direction * moveSpeed * Time.deltaTime));
+    }
+
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.name == "Ground")
+        {
+            isColliding = false;
+            canTurn = true;
+            Debug.Log("Collision with " + collision.gameObject.name + " bool result : " + canTurn);
+        }
+    }
+
+    void OnCollisionExit(Collision collision)
+    {
+        isColliding = false;
+        canTurn = false;
+        Debug.Log("Exit Collision " + collision.gameObject.name + " bool result : " + canTurn);
+    }
+
+
+
+    void TurnMvmt()
+    {
+        if (canTurn)
+        {
+            xVal = -1;
+            zVal = 0;
+            //GetComponent<Rigidbody>().angularVelocity = new Vector3(0, -1, 0);
+            //StartCoroutine(StopRotation());
+            //this.GetComponent<Transform>().RotateAround(Vector3.zero, Vector3.up, -90);
+            //cam.rotation = Quaternion.AngleAxis(-90, Vector3.up);
+            camMovement = new Vector3(xVal, 0, Input.GetAxis("Horizontal"));
+            //GetComponent<Rigidbody>().velocity = new Vector3(xVal, yVal, zVal);
+        }
+        else
+        {
+            SideMvmt(camMovement);
+        }
+    }
+
+
     void ForwardMvmt()
     {
-        
-
-        //GetComponent<Rigidbody>().velocity = new Vector3(0, 0, moveSpeed);
+        //this.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, moveSpeed);
 
 
         //if (Input.GetKeyDown(KeyCode.LeftArrow) && GetComponent<Transform>().position.z > 178 && GetComponent<Transform>().position.z < 179)
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            if (left_curr == 1 && GetComponent<Transform>().position.z > 178 && GetComponent<Transform>().position.z < 179)
-            {
-                xVal = -3;
-                zVal = 0;
-                GetComponent<Rigidbody>().angularVelocity = new Vector3(0, -1, 0);
-                StartCoroutine(StopRotation());
-                left_curr = 2;
-            } else if (left_curr == 2 && GetComponent<Transform>().position.z > 178 && GetComponent<Transform>().position.z < 179)
-            {
-                xVal = -3;
-                zVal = 0;
-                GetComponent<Rigidbody>().angularVelocity = new Vector3(0, -1, 0);
-                StartCoroutine(StopRotation());
-                left_curr = 3;
-            } else if (left_curr == 3 && GetComponent<Transform>().position.z > 178 && GetComponent<Transform>().position.z < 179)
-            {
-                xVal = 0;
-                zVal = -3;
-                GetComponent<Rigidbody>().angularVelocity = new Vector3(0, -1, 0);
-                StartCoroutine(StopRotation());
-                left_curr = 0;
-            } 
-            
-        }
-                
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            switch (right_curr)
-            {
-                case 1 when GetComponent<Transform>().position.x > -185 && GetComponent<Transform>().position.z < -184:
-                    xVal = 0;
-                    zVal = 3;
-                    GetComponent<Rigidbody>().angularVelocity = new Vector3(0, 1, 0);
-                    StartCoroutine(StopRotation());
-                    right_curr = 2;
-                    break;
-                case 2:
-                    xVal = -3;
-                    zVal = 0;
-                    GetComponent<Rigidbody>().angularVelocity = new Vector3(0, 1, 0);
-                    StartCoroutine(StopRotation());
-                    right_curr = 3;
-                    break;
-                case 3:
-                    xVal = 0;
-                    zVal = 3;
-                    GetComponent<Rigidbody>().angularVelocity = new Vector3(0, 1, 0);
-                    StartCoroutine(StopRotation());
-                    right_curr = 0;
-                    break;
-            }
-        }
-        GetComponent<Rigidbody>().velocity = new Vector3(xVal, yVal, zVal);
+        //if (Input.GetKeyDown(KeyCode.LeftArrow))
+        //{
+        //    if (left_curr == 1 && GetComponent<Transform>().position.z > 178 && GetComponent<Transform>().position.z < 179)
+        //    {
+        //        xVal = -3;
+        //        zVal = 0;
+        //        //GetComponent<Transform>().RotateAround(Vector3.zero, Vector3.up, -90);
+        //        GetComponent<Rigidbody>().angularVelocity = new Vector3(0, -1, 0);
+        //        StartCoroutine(StopRotation());
+        //        left_curr = 2;
+        //    }
+        //    else if (left_curr == 2 && GetComponent<Transform>().position.z > 178 && GetComponent<Transform>().position.z < 179)
+        //    {
+        //        xVal = -3;
+        //        zVal = 0;
+        //        GetComponent<Rigidbody>().angularVelocity = new Vector3(0, -1, 0);
+        //        StartCoroutine(StopRotation());
+        //        left_curr = 3;
+        //    }
+        //    else if (left_curr == 3 && GetComponent<Transform>().position.z > 178 && GetComponent<Transform>().position.z < 179)
+        //    {
+        //        xVal = 0;
+        //        zVal = -3;
+        //        GetComponent<Rigidbody>().angularVelocity = new Vector3(0, -1, 0);
+        //        StartCoroutine(StopRotation());
+        //        left_curr = 0;
+        //    }
+
+        //}
+
+        //if (Input.GetKeyDown(KeyCode.RightArrow))
+        //{
+        //    switch (right_curr)
+        //    {
+        //        case 1 when GetComponent<Transform>().position.x > -185 && GetComponent<Transform>().position.z < -184:
+        //            xVal = 0;
+        //            zVal = 3;
+        //            GetComponent<Rigidbody>().angularVelocity = new Vector3(0, 1, 0);
+        //            StartCoroutine(StopRotation());
+        //            right_curr = 2;
+        //            break;
+        //        case 2:
+        //            xVal = -3;
+        //            zVal = 0;
+        //            GetComponent<Rigidbody>().angularVelocity = new Vector3(0, 1, 0);
+        //            StartCoroutine(StopRotation());
+        //            right_curr = 3;
+        //            break;
+        //        case 3:
+        //            xVal = 0;
+        //            zVal = 3;
+        //            GetComponent<Rigidbody>().angularVelocity = new Vector3(0, 1, 0);
+        //            StartCoroutine(StopRotation());
+        //            right_curr = 0;
+        //            break;
+        //    }
+        //}
+        //GetComponent<Rigidbody>().velocity = new Vector3(xVal, yVal, zVal);
 
     }
 
@@ -116,33 +178,36 @@ public class CameraMove : MonoBehaviour
         yield return new WaitForSeconds(.8f);
         GetComponent<Rigidbody>().angularVelocity = new Vector3(0, 0, 0);
 
-        if (left_curr == 2 && right_curr == 1)
-        {
+        //if (left_curr == 2 && right_curr == 1)
+        //{
             GetComponent<Transform>().eulerAngles = new Vector3(0, -90, 0);
-        }
-        else if (left_curr == 2 && right_curr == 2)
-        {
-            GetComponent<Transform>().eulerAngles = new Vector3(0, 0, 0);
-        }
-        else if (left_curr == 3 && right_curr == 2)
-        {
-            GetComponent<Transform>().eulerAngles = new Vector3(0, -90, 0);
-        }
-        else if (left_curr == 0 && right_curr == 2)
-        {
-            GetComponent<Transform>().eulerAngles = new Vector3(0, -180, 0);
-        }
-        else if (left_curr == 0 && right_curr == 3)
-        {
-            GetComponent<Transform>().eulerAngles = new Vector3(0, -90, 0);
-        }
-        else if (left_curr == 0 && right_curr == 0)
-        {
-            GetComponent<Transform>().eulerAngles = new Vector3(0, 0, 0);
-        }
+        //}
+        //else if (left_curr == 2 && right_curr == 2)
+        //{
+        //    GetComponent<Transform>().eulerAngles = new Vector3(0, 0, 0);
+        //}
+        //else if (left_curr == 3 && right_curr == 2)
+        //{
+        //    GetComponent<Transform>().eulerAngles = new Vector3(0, -90, 0);
+        //}
+        //else if (left_curr == 0 && right_curr == 2)
+        //{
+        //    GetComponent<Transform>().eulerAngles = new Vector3(0, -180, 0);
+        //}
+        //else if (left_curr == 0 && right_curr == 3)
+        //{
+        //    GetComponent<Transform>().eulerAngles = new Vector3(0, -90, 0);
+        //}
+        //else if (left_curr == 0 && right_curr == 0)
+        //{
+        //    GetComponent<Transform>().eulerAngles = new Vector3(0, 0, 0);
+        //}
 
     }
-    
+
+
+
+
 
 
     void Movement()
@@ -185,7 +250,6 @@ public class CameraMove : MonoBehaviour
 
             //this.transform.Rotate(Vector3.up, -90);
 
-
             //controller.Move(moveVector * Time.deltaTime);
         }
         //if (Input.GetKeyDown(KeyCode.RightArrow))
@@ -224,7 +288,6 @@ public class CameraMove : MonoBehaviour
 
         // Move Camera
         //controller.Move(moveVector * Time.deltaTime);
-
     }
 
     private Vector3 GoStraight()
@@ -239,7 +302,6 @@ public class CameraMove : MonoBehaviour
         {
             targetPos += Vector3.right * PATH_WIDTH;
         }
-
 
         // Calculate move vector
         //Vector3 moveVector = Vector3.zero;

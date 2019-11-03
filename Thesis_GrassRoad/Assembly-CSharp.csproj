@@ -72,6 +72,7 @@
     <Compile Include="Assets\DemoShoot\Scripts\Shooting.cs" />
     <Compile Include="Assets\GrassRoadRace\Script\CameraMove.cs" />
     <Compile Include="Assets\GrassRoadRace\Script\CollectCoin.cs" />
+    <Compile Include="Assets\GrassRoadRace\Script\EnterArea.cs" />
     <Compile Include="Assets\GrassRoadRace\Script\GunFire.cs" />
     <Compile Include="Assets\GrassRoadRace\Script\HitObstacle.cs" />
     <Compile Include="Assets\GrassRoadRace\Script\PathManager.cs" />
