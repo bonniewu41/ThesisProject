@@ -10,7 +10,7 @@ public class CameraMove : MonoBehaviour
     //Public variables
     public float yaw;
     public float pitch;
-    public float moveSpeed = 2.0f;
+    public float moveSpeed = 3.0f;
     public float mouseSensitivity = 1f;
 
     public float xVal = 0;
@@ -19,6 +19,9 @@ public class CameraMove : MonoBehaviour
 
     public Rigidbody cam;
     public Vector3 camMovement;
+    public Vector3 angularVelocity;
+
+    public AudioSource hitHurdleSound;
 
     //Private variables
     private const float PATH_WIDTH = 1.15f;
@@ -38,6 +41,7 @@ public class CameraMove : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         cam = GetComponent<Rigidbody>();
         cam.isKinematic = false;
+        //angularVelocity = new Vector3(0, -90, 0);
         //controller = GetComponent<CharacterController>();
     }
 
@@ -46,11 +50,13 @@ public class CameraMove : MonoBehaviour
     {
         //ForwardMvmt();
         //Movement();
-        CamRotation();
+        //TurnCam();
+        //CamRotation();
         UnlockCursor();
 
         // forward and sideways movement
-        camMovement = new Vector3(Input.GetAxis("Horizontal"), 0, 1);
+        camMovement = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
+        //TurnMvmt();
     }
 
     void FixedUpdate()
@@ -61,86 +67,143 @@ public class CameraMove : MonoBehaviour
 
 
 
-    void SideMvmt(Vector3 direction)
-    {
-        cam.MovePosition((Vector3)transform.position + (direction * moveSpeed * Time.deltaTime));
-    }
+    
 
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.name == "Ground")
+        //if (collision.gameObject.name == "Ground")
+        //{
+            //isColliding = false;
+            //canTurn = true;
+        if (collision.gameObject.name == "Hurdle03")
         {
-            isColliding = false;
-            canTurn = true;
-            Debug.Log("Collision with " + collision.gameObject.name + " bool result : " + canTurn);
+            //Debug.Log("Collision with " + collision.gameObject.name);
+            //hitHurdleSound.Play();
+            
         }
+        
+
+        //}
     }
 
-    void OnCollisionExit(Collision collision)
+    //void OnCollisionExit(Collision collision)
+    //{
+    //    isColliding = false;
+    //    canTurn = false;
+    //    Debug.Log("Exit Collision " + collision.gameObject.name + " bool result : " + canTurn);
+    //}
+
+
+
+
+    void TurnCam()
     {
-        isColliding = false;
-        canTurn = false;
-        Debug.Log("Exit Collision " + collision.gameObject.name + " bool result : " + canTurn);
-    }
+        //this.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, moveSpeed);
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            this.transform.Rotate(0, -90, 0, Space.World);
+            xVal = -3;
+            zVal = 0;
 
+        }
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            this.transform.Rotate(0, 90, 0, Space.World);
+        }
+
+        GetComponent<Rigidbody>().velocity = new Vector3(xVal, yVal, zVal);
+    }
 
 
     void TurnMvmt()
     {
-        if (canTurn)
+        //SideMvmt(camMovement);
+        //this.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, moveSpeed);
+
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            xVal = -1;
-            zVal = 0;
-            //GetComponent<Rigidbody>().angularVelocity = new Vector3(0, -1, 0);
-            //StartCoroutine(StopRotation());
-            //this.GetComponent<Transform>().RotateAround(Vector3.zero, Vector3.up, -90);
-            //cam.rotation = Quaternion.AngleAxis(-90, Vector3.up);
-            camMovement = new Vector3(xVal, 0, Input.GetAxis("Horizontal"));
-            //GetComponent<Rigidbody>().velocity = new Vector3(xVal, yVal, zVal);
+            //cam.rotation = Quaternion.Euler(0, -90, 0);
+
+            if (EnterArea.canTurn)
+            {
+                xVal = -3;
+                zVal = 0;
+                this.transform.Rotate(0, -90, 0, Space.World);
+                //    //GetComponent<Rigidbody>().angularVelocity = new Vector3(0, -1, 0);
+                //    //StartCoroutine(StopRotation());
+
+                //    //camMovement = new Vector3(xVal, 0, Input.GetAxis("Horizontal"));
+                //    //cam.rotation = Quaternion.Euler(0, -90, 0);
+                //    //Quaternion deltaRotation = Quaternion.Euler(angularVelocity * Time.deltaTime);
+                //    //cam.MoveRotation(cam.rotation * deltaRotation);
+
+                //    //GetComponent<Rigidbody>().velocity = new Vector3(xVal, yVal, zVal);
+            }
+            //else
+            //{
+            //    SideMvmt(camMovement);
+            //    //}
+            //    //xVal = -1;
+            //    //zVal = 0;
+            //    //this.GetComponent<Transform>().RotateAround(Vector3.zero, Vector3.up, -90);
+
+            //}
         }
-        else
-        {
-            SideMvmt(camMovement);
-        }
+
+        //GetComponent<Rigidbody>().angularVelocity = new Vector3(0, -1, 0);
+        //StartCoroutine(StopRotation());
+        //this.GetComponent<Transform>().RotateAround(Vector3.zero, Vector3.up, -90);
+        //cam.rotation = Quaternion.AngleAxis(-90, Vector3.up);
+
+        GetComponent<Rigidbody>().velocity = new Vector3(xVal, yVal, zVal);
+        camMovement = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
+        SideMvmt(camMovement);
+        //}
+        //else
+        //{
+        //    SideMvmt(camMovement);
+        //}
     }
+
+
 
 
     void ForwardMvmt()
     {
-        //this.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, moveSpeed);
+        //cam.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, moveSpeed);
 
 
         //if (Input.GetKeyDown(KeyCode.LeftArrow) && GetComponent<Transform>().position.z > 178 && GetComponent<Transform>().position.z < 179)
-        //if (Input.GetKeyDown(KeyCode.LeftArrow))
-        //{
-        //    if (left_curr == 1 && GetComponent<Transform>().position.z > 178 && GetComponent<Transform>().position.z < 179)
-        //    {
-        //        xVal = -3;
-        //        zVal = 0;
-        //        //GetComponent<Transform>().RotateAround(Vector3.zero, Vector3.up, -90);
-        //        GetComponent<Rigidbody>().angularVelocity = new Vector3(0, -1, 0);
-        //        StartCoroutine(StopRotation());
-        //        left_curr = 2;
-        //    }
-        //    else if (left_curr == 2 && GetComponent<Transform>().position.z > 178 && GetComponent<Transform>().position.z < 179)
-        //    {
-        //        xVal = -3;
-        //        zVal = 0;
-        //        GetComponent<Rigidbody>().angularVelocity = new Vector3(0, -1, 0);
-        //        StartCoroutine(StopRotation());
-        //        left_curr = 3;
-        //    }
-        //    else if (left_curr == 3 && GetComponent<Transform>().position.z > 178 && GetComponent<Transform>().position.z < 179)
-        //    {
-        //        xVal = 0;
-        //        zVal = -3;
-        //        GetComponent<Rigidbody>().angularVelocity = new Vector3(0, -1, 0);
-        //        StartCoroutine(StopRotation());
-        //        left_curr = 0;
-        //    }
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                //if (left_curr == 1 && GetComponent<Transform>().position.z > 178 && GetComponent<Transform>().position.z < 179)
+                //{
+                    xVal = -3;
+                    zVal = 0;
+                    //GetComponent<Transform>().RotateAround(Vector3.zero, Vector3.up, -90);
+                    GetComponent<Rigidbody>().angularVelocity = new Vector3(0, -1, 0);
+                    StartCoroutine(StopRotation());
+                    //left_curr = 2;
+                //}
+                //else if (left_curr == 2 && GetComponent<Transform>().position.z > 178 && GetComponent<Transform>().position.z < 179)
+                //{
+                    //xVal = -3;
+                    //zVal = 0;
+                    //GetComponent<Rigidbody>().angularVelocity = new Vector3(0, -1, 0);
+                    //StartCoroutine(StopRotation());
+                    //left_curr = 3;
+                //}
+                //else if (left_curr == 3 && GetComponent<Transform>().position.z > 178 && GetComponent<Transform>().position.z < 179)
+                //{
+                    //xVal = 0;
+                    //zVal = -3;
+                    //GetComponent<Rigidbody>().angularVelocity = new Vector3(0, -1, 0);
+                    //StartCoroutine(StopRotation());
+                    //left_curr = 0;
+                //}
 
-        //}
+            }
 
         //if (Input.GetKeyDown(KeyCode.RightArrow))
         //{
@@ -169,7 +232,7 @@ public class CameraMove : MonoBehaviour
         //            break;
         //    }
         //}
-        //GetComponent<Rigidbody>().velocity = new Vector3(xVal, yVal, zVal);
+        cam.GetComponent<Rigidbody>().velocity = new Vector3(xVal, yVal, zVal);
 
     }
 
@@ -206,7 +269,10 @@ public class CameraMove : MonoBehaviour
     }
 
 
-
+    void SideMvmt(Vector3 direction)
+    {
+        cam.MovePosition((Vector3)transform.position + (direction * moveSpeed * Time.deltaTime));
+    }
 
 
 

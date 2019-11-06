@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnterArea : MonoBehaviour
 {
 
-    private bool canTurn;
+    public static bool canTurn;
 
     // Start is called before the first frame update
     void Start()

@@ -5,7 +5,7 @@ using UnityEngine;
 public class PathManager : MonoBehaviour
 {
     public GameObject[] pathPrefabs;
-    public GameObject[] hurdlePrefabs;
+    //public GameObject[] hurdlePrefabs;
     public Camera mainCamera;
 
     private float safeZone = 18.0f;
@@ -16,13 +16,13 @@ public class PathManager : MonoBehaviour
     private int lastHurdleIndex = 0;
 
     private List<GameObject> activePaths;
-    private List<GameObject> activeHurdles;
+    //private List<GameObject> activeHurdles;
 
     // Start is called before the first frame update
     void Start()
     {
         activePaths = new List<GameObject>();
-        activeHurdles = new List<GameObject>();
+        //activeHurdles = new List<GameObject>();
         for (int i = 0; i < amtPathOnScreen; i++)
         {
             SpawnPath();
@@ -50,38 +50,38 @@ public class PathManager : MonoBehaviour
     private void SpawnPath(int prefabIndex = -1)
     {
         GameObject path;
-        GameObject hurdle;
+        //GameObject hurdle;
 
         if (prefabIndex == -1)
         {
             path = Instantiate(pathPrefabs[RandomPrefabIndex()]) as GameObject;
-            hurdle = Instantiate(hurdlePrefabs[RandomHurdle()]) as GameObject;
+            //hurdle = Instantiate(hurdlePrefabs[RandomHurdle()]) as GameObject;
         } else
         {
             path = Instantiate(pathPrefabs[prefabIndex]) as GameObject;
-            hurdle = Instantiate(hurdlePrefabs[prefabIndex]) as GameObject;
+            //hurdle = Instantiate(hurdlePrefabs[prefabIndex]) as GameObject;
         }
         
         path.transform.SetParent(transform);
         path.transform.position = Vector3.forward * spawnZ;
 
-        hurdle.transform.SetParent(transform);
-        hurdle.transform.position = Vector3.forward * spawnZ;
+        //hurdle.transform.SetParent(transform);
+        //hurdle.transform.position = Vector3.forward * spawnZ;
 
         spawnZ += pathLength;
 
         activePaths.Add(path);
-        activeHurdles.Add(hurdle);
+        //activeHurdles.Add(hurdle);
     }
 
 
     private void DeletePath()
     {
         Destroy(activePaths[0]);
-        Destroy(activeHurdles[0]);
+        //Destroy(activeHurdles[0]);
 
         activePaths.RemoveAt(0);
-        activeHurdles.RemoveAt(0);
+        //activeHurdles.RemoveAt(0);
     }
 
 
@@ -102,15 +102,15 @@ public class PathManager : MonoBehaviour
         return randomIndex;
     }
 
-    private int RandomHurdle()
-    {
-        int randomHurdleIndex = lastHurdleIndex;
-        while (randomHurdleIndex == lastHurdleIndex)
-        {
-            randomHurdleIndex = Random.Range(0, hurdlePrefabs.Length);
-        }
+    //private int RandomHurdle()
+    //{
+    //    int randomHurdleIndex = lastHurdleIndex;
+    //    while (randomHurdleIndex == lastHurdleIndex)
+    //    {
+    //        randomHurdleIndex = Random.Range(0, hurdlePrefabs.Length);
+    //    }
 
-        lastHurdleIndex = randomHurdleIndex;
-        return randomHurdleIndex;
-    }
+    //    lastHurdleIndex = randomHurdleIndex;
+    //    return randomHurdleIndex;
+    //}
 }

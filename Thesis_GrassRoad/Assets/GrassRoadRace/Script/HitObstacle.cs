@@ -19,8 +19,17 @@ public class HitObstacle : MonoBehaviour
         
     }
 
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.name == "Character")
+        {
+            Debug.Log("Collision with " + collision.gameObject.name);
+            hitHurdleSound.Play();
+            ScoringSystem.scoreValue -= 10;
+        }
+    }
 
-   void onHit ()
+    void onHit ()
     {
         //ScoringSystem.scoreValue -= 10;
         //hitHurdleSound.Play();
