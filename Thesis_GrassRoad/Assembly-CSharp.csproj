@@ -78,6 +78,7 @@
     <Compile Include="Assets\GrassRoadRace\Script\HitObstacle.cs" />
     <Compile Include="Assets\GrassRoadRace\Script\PathManager.cs" />
     <Compile Include="Assets\GrassRoadRace\Script\ScoringSystem.cs" />
+    <Compile Include="Assets\GrassRoadRace\Script\SpawnTargets.cs" />
     <Compile Include="Assets\GrassRoadRace\Script\Target.cs" />
     <Compile Include="Assets\PenguRace\Script\CameraMotor.cs" />
     <Compile Include="Assets\PenguRace\Script\Coin.cs" />

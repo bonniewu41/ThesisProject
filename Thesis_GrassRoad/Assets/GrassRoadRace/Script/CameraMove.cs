@@ -51,18 +51,18 @@ public class CameraMove : MonoBehaviour
         //ForwardMvmt();
         //Movement();
         //TurnCam();
-        //CamRotation();
+        CamRotation();
         UnlockCursor();
 
         // forward and sideways movement
-        camMovement = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
+        camMovement = new Vector3(Input.GetAxis("Horizontal"), 0, 1);
         //TurnMvmt();
     }
 
     void FixedUpdate()
     {
-        TurnMvmt();
-        //SideMvmt(camMovement);
+        //TurnMvmt();
+        SideMvmt(camMovement);
     }
 
 
@@ -156,7 +156,7 @@ public class CameraMove : MonoBehaviour
         //this.GetComponent<Transform>().RotateAround(Vector3.zero, Vector3.up, -90);
         //cam.rotation = Quaternion.AngleAxis(-90, Vector3.up);
 
-        GetComponent<Rigidbody>().velocity = new Vector3(xVal, yVal, zVal);
+        //GetComponent<Rigidbody>().velocity = new Vector3(xVal, yVal, zVal);
         camMovement = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
         SideMvmt(camMovement);
         //}

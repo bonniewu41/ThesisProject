@@ -8,7 +8,6 @@ public class Target : MonoBehaviour
 {
 
     public AudioSource collectSound;
-    //public ParticleSystem hitEffects;
     public int rotateSpeed;
 
     private void Start()
@@ -26,14 +25,8 @@ public class Target : MonoBehaviour
     {
         ScoringSystem.scoreValue += 10;
         collectSound.Play();
-        //hitEffects.Play();
-
-        Die();
-    }
-
-    void Die()
-    {
-        Destroy(gameObject);
+        transform.position = Vector3.one * 9999f; // move the game object off screen while it finishes it's sound, then destroy it
+        Destroy(gameObject, 2f);
     }
 
 }
