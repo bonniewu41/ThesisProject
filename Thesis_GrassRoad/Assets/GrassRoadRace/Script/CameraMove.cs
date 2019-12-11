@@ -55,7 +55,7 @@ public class CameraMove : MonoBehaviour
         UnlockCursor();
 
         // forward and sideways movement
-        camMovement = new Vector3(Input.GetAxis("Horizontal"), 0, 1);
+        //camMovement = new Vector3(Input.GetAxis("Horizontal"), 0, 1);
         //TurnMvmt();
     }
 
