@@ -12,7 +12,7 @@ public class Target : MonoBehaviour
 
     private void Start()
     {
-        rotateSpeed = 2;
+        rotateSpeed = 1;
     }
 
     void Update()

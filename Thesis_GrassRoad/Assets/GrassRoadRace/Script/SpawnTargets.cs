@@ -11,8 +11,8 @@ public class SpawnTargets : MonoBehaviour
     public int yPos;
     public int zPos;
 
-    public int targetCount = 0;
     public int maxTarget = 10;
+    public int addedDistance = 4; // This adjusts how far targets should be located from the current character position
     public float spawnTime = 0.1f;
     public float repeatTime = 0.6f;
     public float current_length;
@@ -23,7 +23,6 @@ public class SpawnTargets : MonoBehaviour
     private float spawnZ = 0.0f;
 
     private List<GameObject> activeTargets;
-    //private GameObject _t;
 
 
     void Start()
@@ -34,82 +33,57 @@ public class SpawnTargets : MonoBehaviour
 
         activeTargets = new List<GameObject>();
 
-        int[] firstTargetGroup = FirstTargetSelection();
-
-        spawnTarget();
+        firstSpawnTarget();
         deleteTarget();
-
-        //for (int i = 0; i < 10; i++)
-        //{
-        //    xPos = firstTargetGroup[i];
-        //    yPos = Random.Range(2, 5);
-        //    zPos = (int)(characterPos + Random.Range(9, 14));
-
-        //    _targetClone = Instantiate(targetPrefab, new Vector3(xPos, yPos, zPos), Quaternion.Euler(90, 0, 0));
-        //    //targetCount++;
-        //}
     }
 
     void Update()
     {
         characterPos = character.transform.position.z;
 
-        
-        if (characterPos > (spawnZ - 3))
-        {
-            
+        if (characterPos > (spawnZ - addedDistance))
+        {  
             spawnTarget();
-            //deleteTarget();
-            //for(int i = 0; i < maxTarget; i++)
-            //{
-            //    //xPos = (int)GetRandom()[i];
-            //    xPos = firstTargetGroup[i];
-            //    yPos = Random.Range(2, 5);
-            //    zPos = (int)(characterPos + Random.Range(9, 14));
-            //    spawnTarget();
-            //}
-            //spawnZ += pathLength;
-
-
-
-            //deleteTarget();
+            deleteTarget();
         }
-        if (characterPos > spawnZ)
-        {
-            //deleteTarget();
-        }
-
-        //spawnTarget();
-        //Debug.Log(characterPos);
     }
-
-
 
     // spawns 10 Targets at a time
     void spawnTarget()
     {
-        //int xPos = x;
-        //int yPos = y;
-        //int zPos = z;
-        int[] firstTargetGroup = FirstTargetSelection();
+        List<int> firstTargetGroup = FirstTargetSelection();
+
+        //Debug.Log(firstTargetGroup);
+
         for (int i = 0; i < maxTarget; i++)
         {
-            //xPos = (int)GetRandom()[i];
+            xPos = firstTargetGroup[i];
+            yPos = Random.Range(2, 5);
+            zPos = (int)(characterPos + Random.Range(9 + addedDistance, 14 + addedDistance));
+            _targetClone = Instantiate(targetPrefab, new Vector3(xPos, yPos, zPos), Quaternion.Euler(90, 0, 0));
+
+            activeTargets.Add(_targetClone);
+        }
+        spawnZ += pathLength;
+    }
+
+
+    void firstSpawnTarget()
+    {
+        List<int> firstTargetGroup = FirstTargetSelection();
+
+        //Debug.Log(firstTargetGroup);
+
+        for (int i = 0; i < maxTarget; i++)
+        {
             xPos = firstTargetGroup[i];
             yPos = Random.Range(2, 5);
             zPos = (int)(characterPos + Random.Range(9, 14));
             _targetClone = Instantiate(targetPrefab, new Vector3(xPos, yPos, zPos), Quaternion.Euler(90, 0, 0));
 
             activeTargets.Add(_targetClone);
-            Debug.Log(activeTargets.Count);
         }
-
-        //_targetClone = Instantiate(targetPrefab, new Vector3(xPos, yPos, zPos), Quaternion.Euler(90, 0, 0));
-        //targetCount++;
-
-
         spawnZ += pathLength;
-
     }
 
 
@@ -117,78 +91,102 @@ public class SpawnTargets : MonoBehaviour
     {
         for (int i = 9; i >= 0; --i)
         {
+            Destroy(activeTargets[i], 6.5f);
             activeTargets.RemoveAt(i);
-            Destroy(activeTargets[i], 3f);
-            
-            //targetCount--;
         }
-
-        //if (targetPrefab.transform.position.z < characterPos + 5)
-        //{
-        //    Destroy(_targetClone, 5f);
-        //    targetCount--;
-        //}
     }
 
-
-    private int GetRandom()
-    {
-        int[] validChoices = { -8, -8, -7, -7, -6, -6, -5, -5, -4, -4, -3, -2, -1, 1, 2, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8 };
-        return validChoices[Random.Range(0, validChoices.Length)];
-    }
-
-
-    private Hashtable computeXPos()
-    {
-
-        int cur_left = Random.Range(-10, -3); // left options
-        int cur_middle = Random.Range(-3, 4); // middle options
-        int cur_right = Random.Range(4, 11); //right options
-
-        int[] allCombinations = { 4, 1, 5, 3, 1, 6, 2, 1, 7, 5, 1, 4, 6, 1, 3, 7, 1, 2, 3, 2, 5, 4, 2, 4, 5, 2, 3 };
-
-        var validChoices = new Hashtable();
-
-        //float[,] myFloats = new float[10, 10];
-
-
-        return validChoices;
-    }
-
-
-    // creates random selection for the first target group with (L=4, M=2, R=4)
-    private int[] FirstTargetSelection()
+    // creates random selection for the patterns of targets appearing
+    // 415, 514, 325, 424, 523
+    private List<int> FirstTargetSelection()
     {
         int cur_left;
         int cur_middle;
         int cur_right;
 
-        int[] firstTargetGroup = new int[10];
+        int left_num = Random.Range(3, 6);
+        int mid_num = Random.Range(1, 3);
+        if (left_num == 3)
+        {
+            mid_num = 2;
+        }
 
-        // 0, 1, 2, 3
-        for (int i = 0; i< 4; i++)
+        List<int> firstTargetGroup = new List<int>();
+
+        // chooses left section numbers
+        for (int i = 0; i < left_num; i++)
         {
             cur_left = Random.Range(-10, -3);
-            firstTargetGroup[i] = cur_left;
+            while (firstTargetGroup.Contains(cur_left))
+            {
+                cur_left = Random.Range(-10, -3);
+            }
+            firstTargetGroup.Add(cur_left);
         }
 
-        // 4, 5
-        for (int i = 4; i < 6; i++)
+        // chooses middle section numbers
+        for (int i = left_num; i < left_num + mid_num; i++)
         {
             cur_middle = Random.Range(-3, 4);
-            firstTargetGroup[i] = cur_middle;
+
+            while (firstTargetGroup.Contains(cur_middle))
+            {
+                cur_middle = Random.Range(-3, 4);
+            }
+            firstTargetGroup.Add(cur_middle);
         }
 
-        // 6, 7, 8, 9
-        for (int i = 6; i < 10; i++)
+        // chooses right section numbers
+        for (int i = left_num + mid_num; i < 10; i++)
         {
             cur_right = Random.Range(4, 11);
-            firstTargetGroup[i] = cur_right;
+            while (firstTargetGroup.Contains(cur_right))
+            {
+                cur_right = Random.Range(4, 11);
+            }
+            firstTargetGroup.Add(cur_right);
         }
+
+        //for (int i = 0; i < 10; i++)
+        //{
+        //    Debug.Log(firstTargetGroup[i]);
+        //}
+            
 
         return firstTargetGroup;
     }
 }
+
+
+
+
+
+// ** not used yet
+//private int GetRandom()
+//{
+//    int[] validChoices = { -8, -8, -7, -7, -6, -6, -5, -5, -4, -4, -3, -2, -1, 1, 2, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8 };
+//    return validChoices[Random.Range(0, validChoices.Length)];
+//}
+
+// ** not used yet
+//private Hashtable computeXPos()
+//{
+
+//    int cur_left = Random.Range(-10, -3); // left options
+//    int cur_middle = Random.Range(-3, 4); // middle options
+//    int cur_right = Random.Range(4, 11); //right options
+
+//    int[] allCombinations = { 4, 1, 5, 3, 1, 6, 2, 1, 7, 5, 1, 4, 6, 1, 3, 7, 1, 2, 3, 2, 5, 4, 2, 4, 5, 2, 3 };
+
+//    var validChoices = new Hashtable();
+
+//    //float[,] myFloats = new float[10, 10];
+
+
+//    return validChoices;
+//}
+
+
 
 
 
