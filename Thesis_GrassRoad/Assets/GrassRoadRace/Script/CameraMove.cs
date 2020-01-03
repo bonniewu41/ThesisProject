@@ -10,7 +10,8 @@ public class CameraMove : MonoBehaviour
     /* =============== Public variables =============== */
     public float yaw;
     public float pitch;
-    public float moveSpeed = 1.0f;
+    public float moveSpeed = 4.0f;
+    public static int counter = 0;
     public float mouseSensitivity = 1f;
 
     public Rigidbody cam;
@@ -48,17 +49,17 @@ public class CameraMove : MonoBehaviour
      */
     void Get_turn(int trigger)
     {
-        if ((trigger % 2) == 1)
+        if (trigger > 6)
         {
-            camMovement = new Vector3(-moveSpeed, 0, Input.GetAxis("Horizontal"));
+            camMovement = new Vector3(0, 0, 0);
         }
         else if (trigger == 4)
         {
             camMovement = new Vector3((-1) * (Input.GetAxis("Horizontal")), 0, -moveSpeed);
         }
-        else if (trigger > 6)
+        else if ((trigger % 2) == 1)
         {
-            camMovement = new Vector3(0, 0, 0);
+            camMovement = new Vector3(-moveSpeed, 0, Input.GetAxis("Horizontal"));
         }
         else
         {
@@ -67,12 +68,10 @@ public class CameraMove : MonoBehaviour
     }
 
 
-
     void SideMvmt(Vector3 direction)
     {
         cam.MovePosition((Vector3)transform.position + (direction * moveSpeed * Time.deltaTime));
     }
-
 
 
     void CamRotation()

@@ -4,62 +4,141 @@ using UnityEngine;
 
 public class SpawnTargets : MonoBehaviour
 {
+    /* =============== Public variables =============== */
     public GameObject targetPrefab;
     public GameObject character;
-    
+
     public int xPos;
     public int yPos;
     public int zPos;
 
     public int maxTarget = 10;
     public int addedDistance = 4; // This adjusts how far targets should be located from the current character position
-    public float spawnTime = 0.1f;
-    public float repeatTime = 0.6f;
-    public float current_length;
+    /* ================================================ */
 
+
+    /* =============== Private variables =============== */
     private GameObject _targetClone;
-    private float characterPos;
+    private float characterPosZ;
+    private float characterPosX;
     private float pathLength = 15.0f;
     private float spawnZ = 0.0f;
+    private float spawnX = 0.0f;
 
     private List<GameObject> activeTargets;
+    /* ================================================ */
 
 
     void Start()
     {
-        //StartCoroutine(TargetSpawn());
-        //Invoke("spawnTarget", spawnTime);
-        //InvokeRepeating("spawnTarget", spawnTime, repeatTime);
-
         activeTargets = new List<GameObject>();
 
-        firstSpawnTarget();
-        deleteTarget();
+        FirstSpawnTarget();
+        DeleteTarget();
     }
 
     void Update()
     {
-        characterPos = character.transform.position.z;
+        characterPosZ = character.transform.position.z;
+        characterPosX = character.transform.position.x;
 
-        if (characterPos > (spawnZ - addedDistance))
-        {  
-            spawnTarget();
-            deleteTarget();
+        if ((EnterArea.trigger_count % 2) == 1) // case1 : moving with x
+        {
+            if (characterPosX < (spawnX + addedDistance))
+            {
+                SpawnTarget_x();
+                DeleteTarget();
+            }
+        }
+        else if (EnterArea.trigger_count == 4) 
+        {
+            if (characterPosZ < (spawnZ - addedDistance))
+            {
+                SpawnTarget_z();
+                DeleteTarget();
+            }
+        }
+        else
+        {
+            if (characterPosZ > (spawnZ - addedDistance))
+            {
+                SpawnTarget_z();
+                DeleteTarget();
+            }
         }
     }
 
-    // spawns 10 Targets at a time
-    void spawnTarget()
-    {
-        List<int> firstTargetGroup = FirstTargetSelection();
 
-        //Debug.Log(firstTargetGroup);
+    /* spawns 10 Targets at a time based on z position */
+    void SpawnTarget_z()
+    {
+        List<int> firstTargetGroup = SelectTarget();
+
+        for (int i = 0; i < maxTarget; i++)
+        {
+            xPos = firstTargetGroup[i] - (184 * (EnterArea.trigger_count / 2));
+            yPos = Random.Range(2, 5);
+
+            if (EnterArea.trigger_count == 4)
+            {
+                zPos = (int)(characterPosZ - Random.Range(9 + addedDistance, 14 + addedDistance));
+            }
+            else
+            {
+                zPos = (int)(characterPosZ + Random.Range(9 + addedDistance, 14 + addedDistance));
+            }
+
+            _targetClone = Instantiate(targetPrefab, new Vector3(xPos, yPos, zPos), Quaternion.Euler(90, 0, 0));
+
+            activeTargets.Add(_targetClone);
+        }
+        if (EnterArea.trigger_count == 4)
+        {
+            spawnZ -= pathLength;
+        }
+        else
+        {
+            spawnZ += pathLength;
+        }
+    }
+
+
+    /* spawns 10 Targets at a time based on x position */
+    void SpawnTarget_x()
+    {
+        List<int> TargetGroup = SelectTarget();
+
+        for (int i = 0; i < maxTarget; i++)
+        {
+            xPos = (int)(characterPosX - Random.Range(9 + addedDistance, 14 + addedDistance));
+            yPos = Random.Range(2, 5);
+
+            if (EnterArea.trigger_count == 3)
+            {
+                zPos = (178 * 2) + TargetGroup[i];
+            }
+            else
+            {
+                zPos = (178 * (EnterArea.trigger_count % 2)) + TargetGroup[i];
+            }
+
+            _targetClone = Instantiate(targetPrefab, new Vector3(xPos, yPos, zPos), Quaternion.Euler(90, 0, 0));
+
+            activeTargets.Add(_targetClone);
+        }
+        spawnX -= pathLength;
+    }
+
+
+    void FirstSpawnTarget()
+    {
+        List<int> firstTargetGroup = SelectTarget();
 
         for (int i = 0; i < maxTarget; i++)
         {
             xPos = firstTargetGroup[i];
             yPos = Random.Range(2, 5);
-            zPos = (int)(characterPos + Random.Range(9 + addedDistance, 14 + addedDistance));
+            zPos = (int)(characterPosZ + Random.Range(9, 14));
             _targetClone = Instantiate(targetPrefab, new Vector3(xPos, yPos, zPos), Quaternion.Euler(90, 0, 0));
 
             activeTargets.Add(_targetClone);
@@ -68,26 +147,7 @@ public class SpawnTargets : MonoBehaviour
     }
 
 
-    void firstSpawnTarget()
-    {
-        List<int> firstTargetGroup = FirstTargetSelection();
-
-        //Debug.Log(firstTargetGroup);
-
-        for (int i = 0; i < maxTarget; i++)
-        {
-            xPos = firstTargetGroup[i];
-            yPos = Random.Range(2, 5);
-            zPos = (int)(characterPos + Random.Range(9, 14));
-            _targetClone = Instantiate(targetPrefab, new Vector3(xPos, yPos, zPos), Quaternion.Euler(90, 0, 0));
-
-            activeTargets.Add(_targetClone);
-        }
-        spawnZ += pathLength;
-    }
-
-
-    void deleteTarget()
+    void DeleteTarget()
     {
         for (int i = 9; i >= 0; --i)
         {
@@ -96,9 +156,10 @@ public class SpawnTargets : MonoBehaviour
         }
     }
 
-    // creates random selection for the patterns of targets appearing
-    // 415, 514, 325, 424, 523
-    private List<int> FirstTargetSelection()
+
+    /* creates random selection for the patterns of targets appearing
+       415, 514, 325, 424, 523 */
+    private List<int> SelectTarget()
     {
         int cur_left;
         int cur_middle;
@@ -147,132 +208,8 @@ public class SpawnTargets : MonoBehaviour
             firstTargetGroup.Add(cur_right);
         }
 
-        //for (int i = 0; i < 10; i++)
-        //{
-        //    Debug.Log(firstTargetGroup[i]);
-        //}
-            
-
         return firstTargetGroup;
     }
 }
 
 
-
-
-
-// ** not used yet
-//private int GetRandom()
-//{
-//    int[] validChoices = { -8, -8, -7, -7, -6, -6, -5, -5, -4, -4, -3, -2, -1, 1, 2, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8 };
-//    return validChoices[Random.Range(0, validChoices.Length)];
-//}
-
-// ** not used yet
-//private Hashtable computeXPos()
-//{
-
-//    int cur_left = Random.Range(-10, -3); // left options
-//    int cur_middle = Random.Range(-3, 4); // middle options
-//    int cur_right = Random.Range(4, 11); //right options
-
-//    int[] allCombinations = { 4, 1, 5, 3, 1, 6, 2, 1, 7, 5, 1, 4, 6, 1, 3, 7, 1, 2, 3, 2, 5, 4, 2, 4, 5, 2, 3 };
-
-//    var validChoices = new Hashtable();
-
-//    //float[,] myFloats = new float[10, 10];
-
-
-//    return validChoices;
-//}
-
-
-
-
-
-
-//spawnTarget();
-
-//xPos = (int)GetRandom()[i];
-
-
-// *trying to compute random selection in the Start method that doesn't repeat 
-
-//random_num = Random.Range(0, firstTargetGroup.Length);
-
-//int random_num;
-//int prev_random = -1;
-
-//if (random_num == prev_random)
-//{
-//    //prev_random = random_num;
-//    random_num = Random.Range(0, firstTargetGroup.Length);
-//}
-
-//prev_random = random_num;
-//int cur_xPos = firstTargetGroup[random_num];
-//firstTargetGroup[random_num] = 0;
-
-//if (cur_xPos == xPos)
-//{
-
-//    cur_xPos = firstTargetGroup[random_num];
-//}
-//else
-//{
-//    xPos = cur_xPos;
-//}
-
-
-//xPos = firstTargetGroup[random_num];
-
-
-
-
-
-
-
-
-
-//IEnumerator TargetSpawn()
-//{
-//    while (targetCount < maxTarget)
-//    {
-//        xPos = GetRandom();
-//        yPos = Random.Range(2, 5);
-//        zPos = (int)(characterPos + Random.Range(10, 18));
-
-//        // problem right now is that when instantiating a clone, you can delete it but then it continues to spawn a lot of them
-//        for (int i = 0; i < maxTarget; i++)
-//        {
-//            _targetClone = Instantiate(targetPrefab, new Vector3(xPos, yPos, zPos), Quaternion.Euler(90, 0, 0));
-//            targetCount++;
-//        }
-//        //GameObject t = Instantiate(targetPrefab) as GameObject;
-//        //t.transform.position = new Vector3(xPos, yPos, zPos);
-//        //t.transform.rotation = Quaternion.Euler(90, 0, 0);
-
-
-
-//        activeTargets.Add(_targetClone);
-//        spawnZ += pathLength - 1;
-
-//        yield return new WaitForSeconds(0.2f);
-
-//        //if (targetPrefab.transform.position.z < characterPos + 5)
-//        //{
-//        //    Destroy(_t, 4f);
-//        //    targetCount -= 1;
-//        //}
-
-//        if (characterPos > spawnZ - 7)
-//        {
-//            for (int i = 0; i < 10; i++)
-//            {
-//                Destroy(activeTargets[i], 5f);
-//                activeTargets.RemoveAt(i);
-//                targetCount--;
-//            }
-//        }
-//    }
-//}
