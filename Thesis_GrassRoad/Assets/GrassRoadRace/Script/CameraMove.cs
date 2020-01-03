@@ -7,33 +7,17 @@ using UnityEngine.Events;
 public class CameraMove : MonoBehaviour
 {
 
-    //Public variables
+    /* =============== Public variables =============== */
     public float yaw;
     public float pitch;
-    public float moveSpeed = 3.0f;
+    public float moveSpeed = 1.0f;
     public float mouseSensitivity = 1f;
-
-    public float xVal = 0;
-    public float yVal = 0;
-    public float zVal = 3;
 
     public Rigidbody cam;
     public Vector3 camMovement;
-    public Vector3 angularVelocity;
 
     public AudioSource hitHurdleSound;
-
-    //Private variables
-    private const float PATH_WIDTH = 1.15f;
-    private CharacterController controller;
-    private int desiredLane = 1; // 0 = left, 1 = middle, 2 = right
-    private Vector3 moveVector = Vector3.zero;
-    private int left_curr = 1;
-    private int right_curr = 1;
-    private bool isColliding;
-    private bool canTurn;
-
-
+    /* ================================================ */
 
 
     void Start()
@@ -41,361 +25,53 @@ public class CameraMove : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         cam = GetComponent<Rigidbody>();
         cam.isKinematic = false;
-        //angularVelocity = new Vector3(0, -90, 0);
-        //controller = GetComponent<CharacterController>();
     }
 
 
     void Update()
     {
-        //ForwardMvmt();
-        //Movement();
-        //TurnCam();
         CamRotation();
         UnlockCursor();
 
-        // forward and sideways movement
-        camMovement = new Vector3(Input.GetAxis("Horizontal"), 0, 1);
-        //TurnMvmt();
+        Get_turn(EnterArea.trigger_count);
     }
+
 
     void FixedUpdate()
     {
-        //TurnMvmt();
         SideMvmt(camMovement);
     }
 
 
-
-    
-
-
-    void OnCollisionEnter(Collision collision)
+    /* Use number of triggers hit to determine direction to move forward to.
+       NOTE: Player will need to turn their gaze direction by themselves.
+     */
+    void Get_turn(int trigger)
     {
-        //if (collision.gameObject.name == "Ground")
-        //{
-            //isColliding = false;
-            //canTurn = true;
-        if (collision.gameObject.name == "Hurdle03")
+        if ((trigger % 2) == 1)
         {
-            //Debug.Log("Collision with " + collision.gameObject.name);
-            //hitHurdleSound.Play();
-            
+            camMovement = new Vector3(-moveSpeed, 0, Input.GetAxis("Horizontal"));
         }
-        
-
-        //}
-    }
-
-    //void OnCollisionExit(Collision collision)
-    //{
-    //    isColliding = false;
-    //    canTurn = false;
-    //    Debug.Log("Exit Collision " + collision.gameObject.name + " bool result : " + canTurn);
-    //}
-
-
-
-
-    void TurnCam()
-    {
-        //this.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, moveSpeed);
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        else if (trigger == 4)
         {
-            this.transform.Rotate(0, -90, 0, Space.World);
-            xVal = -3;
-            zVal = 0;
-
+            camMovement = new Vector3((-1) * (Input.GetAxis("Horizontal")), 0, -moveSpeed);
         }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        else if (trigger > 6)
         {
-            this.transform.Rotate(0, 90, 0, Space.World);
+            camMovement = new Vector3(0, 0, 0);
         }
-
-        GetComponent<Rigidbody>().velocity = new Vector3(xVal, yVal, zVal);
-    }
-
-
-    void TurnMvmt()
-    {
-        //SideMvmt(camMovement);
-        //this.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, moveSpeed);
-
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        else
         {
-            //cam.rotation = Quaternion.Euler(0, -90, 0);
-
-            if (EnterArea.canTurn)
-            {
-                xVal = -3;
-                zVal = 0;
-                this.transform.Rotate(0, -90, 0, Space.World);
-                //    //GetComponent<Rigidbody>().angularVelocity = new Vector3(0, -1, 0);
-                //    //StartCoroutine(StopRotation());
-
-                //    //camMovement = new Vector3(xVal, 0, Input.GetAxis("Horizontal"));
-                //    //cam.rotation = Quaternion.Euler(0, -90, 0);
-                //    //Quaternion deltaRotation = Quaternion.Euler(angularVelocity * Time.deltaTime);
-                //    //cam.MoveRotation(cam.rotation * deltaRotation);
-
-                //    //GetComponent<Rigidbody>().velocity = new Vector3(xVal, yVal, zVal);
-            }
-            //else
-            //{
-            //    SideMvmt(camMovement);
-            //    //}
-            //    //xVal = -1;
-            //    //zVal = 0;
-            //    //this.GetComponent<Transform>().RotateAround(Vector3.zero, Vector3.up, -90);
-
-            //}
+            camMovement = new Vector3(Input.GetAxis("Horizontal"), 0, moveSpeed);
         }
-
-        //GetComponent<Rigidbody>().angularVelocity = new Vector3(0, -1, 0);
-        //StartCoroutine(StopRotation());
-        //this.GetComponent<Transform>().RotateAround(Vector3.zero, Vector3.up, -90);
-        //cam.rotation = Quaternion.AngleAxis(-90, Vector3.up);
-
-        //GetComponent<Rigidbody>().velocity = new Vector3(xVal, yVal, zVal);
-        camMovement = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
-        SideMvmt(camMovement);
-        //}
-        //else
-        //{
-        //    SideMvmt(camMovement);
-        //}
     }
 
-
-
-
-    void ForwardMvmt()
-    {
-        //cam.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, moveSpeed);
-
-
-        //if (Input.GetKeyDown(KeyCode.LeftArrow) && GetComponent<Transform>().position.z > 178 && GetComponent<Transform>().position.z < 179)
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-                //if (left_curr == 1 && GetComponent<Transform>().position.z > 178 && GetComponent<Transform>().position.z < 179)
-                //{
-                    xVal = -3;
-                    zVal = 0;
-                    //GetComponent<Transform>().RotateAround(Vector3.zero, Vector3.up, -90);
-                    GetComponent<Rigidbody>().angularVelocity = new Vector3(0, -1, 0);
-                    StartCoroutine(StopRotation());
-                    //left_curr = 2;
-                //}
-                //else if (left_curr == 2 && GetComponent<Transform>().position.z > 178 && GetComponent<Transform>().position.z < 179)
-                //{
-                    //xVal = -3;
-                    //zVal = 0;
-                    //GetComponent<Rigidbody>().angularVelocity = new Vector3(0, -1, 0);
-                    //StartCoroutine(StopRotation());
-                    //left_curr = 3;
-                //}
-                //else if (left_curr == 3 && GetComponent<Transform>().position.z > 178 && GetComponent<Transform>().position.z < 179)
-                //{
-                    //xVal = 0;
-                    //zVal = -3;
-                    //GetComponent<Rigidbody>().angularVelocity = new Vector3(0, -1, 0);
-                    //StartCoroutine(StopRotation());
-                    //left_curr = 0;
-                //}
-
-            }
-
-        //if (Input.GetKeyDown(KeyCode.RightArrow))
-        //{
-        //    switch (right_curr)
-        //    {
-        //        case 1 when GetComponent<Transform>().position.x > -185 && GetComponent<Transform>().position.z < -184:
-        //            xVal = 0;
-        //            zVal = 3;
-        //            GetComponent<Rigidbody>().angularVelocity = new Vector3(0, 1, 0);
-        //            StartCoroutine(StopRotation());
-        //            right_curr = 2;
-        //            break;
-        //        case 2:
-        //            xVal = -3;
-        //            zVal = 0;
-        //            GetComponent<Rigidbody>().angularVelocity = new Vector3(0, 1, 0);
-        //            StartCoroutine(StopRotation());
-        //            right_curr = 3;
-        //            break;
-        //        case 3:
-        //            xVal = 0;
-        //            zVal = 3;
-        //            GetComponent<Rigidbody>().angularVelocity = new Vector3(0, 1, 0);
-        //            StartCoroutine(StopRotation());
-        //            right_curr = 0;
-        //            break;
-        //    }
-        //}
-        cam.GetComponent<Rigidbody>().velocity = new Vector3(xVal, yVal, zVal);
-
-    }
-
-    IEnumerator StopRotation()
-    {
-        yield return new WaitForSeconds(.8f);
-        GetComponent<Rigidbody>().angularVelocity = new Vector3(0, 0, 0);
-
-        //if (left_curr == 2 && right_curr == 1)
-        //{
-            GetComponent<Transform>().eulerAngles = new Vector3(0, -90, 0);
-        //}
-        //else if (left_curr == 2 && right_curr == 2)
-        //{
-        //    GetComponent<Transform>().eulerAngles = new Vector3(0, 0, 0);
-        //}
-        //else if (left_curr == 3 && right_curr == 2)
-        //{
-        //    GetComponent<Transform>().eulerAngles = new Vector3(0, -90, 0);
-        //}
-        //else if (left_curr == 0 && right_curr == 2)
-        //{
-        //    GetComponent<Transform>().eulerAngles = new Vector3(0, -180, 0);
-        //}
-        //else if (left_curr == 0 && right_curr == 3)
-        //{
-        //    GetComponent<Transform>().eulerAngles = new Vector3(0, -90, 0);
-        //}
-        //else if (left_curr == 0 && right_curr == 0)
-        //{
-        //    GetComponent<Transform>().eulerAngles = new Vector3(0, 0, 0);
-        //}
-
-    }
 
 
     void SideMvmt(Vector3 direction)
     {
         cam.MovePosition((Vector3)transform.position + (direction * moveSpeed * Time.deltaTime));
     }
-
-
-
-    void Movement()
-    {
-        //this.transform.Rotate(0, Input.GetAxisRaw("Horizontal"), 0);
-
-        //Vector3 currentPosition = transform.TransformPoint(Vector3.zero);
-
-        // Gather input on which lane we should be
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-
-            //GetComponent<Rigidbody>().velocity = new Vector3(moveVector.x, moveVector.y, moveVector.z);
-
-            this.transform.Rotate(Vector3.up, -90);
-            moveVector.x = -moveSpeed;
-            moveVector.y = -0.001f;
-            //moveVector.z = currentPosition.z;
-            moveVector.z = 0;
-
-            //controller.Move(moveVector * Time.deltaTime);
-
-            //moveVector.z = this.transform.position.z;
-            //moveVector.x = -moveSpeed;
-            //controller.Move(moveVector * Time.deltaTime);
-
-            //if (canTurn)
-            //{
-            //TurnLeft();
-
-            //}
-            //else
-            //{
-            //MoveLane(false);
-            //}
-
-        } else
-        {
-            GoStraight();
-
-            //this.transform.Rotate(Vector3.up, -90);
-
-            //controller.Move(moveVector * Time.deltaTime);
-        }
-        //if (Input.GetKeyDown(KeyCode.RightArrow))
-        //{
-        //    //TurnRight();
-
-        //    //if (canTurn)
-        //    //{
-        //    TurnRight();
-        //    //}
-        //    //else
-        //    //{
-        //    //MoveLane(true);
-        //    //}
-        //}
-
-
-        //// Calculate where we should be in the future
-        //Vector3 targetPos = transform.position.z * Vector3.forward;
-        //if (desiredLane == 0)
-        //{
-        //    targetPos += Vector3.left * PATH_WIDTH;
-        //}
-        //else if (desiredLane == 2)
-        //{
-        //    targetPos += Vector3.right * PATH_WIDTH;
-        //}
-
-
-        //// Calculate move vector
-        ////Vector3 moveVector = Vector3.zero;
-        //moveVector.x = (targetPos - transform.position).normalized.x * moveSpeed;
-        //moveVector.y = -0.001f;
-        //moveVector.z = moveSpeed;
-
-
-        // Move Camera
-        //controller.Move(moveVector * Time.deltaTime);
-    }
-
-    private Vector3 GoStraight()
-    {
-        // Calculate where we should be in the future
-        Vector3 targetPos = transform.position.z * Vector3.forward;
-        if (desiredLane == 0)
-        {
-            targetPos += Vector3.left * PATH_WIDTH;
-        }
-        else if (desiredLane == 2)
-        {
-            targetPos += Vector3.right * PATH_WIDTH;
-        }
-
-        // Calculate move vector
-        //Vector3 moveVector = Vector3.zero;
-        moveVector.x = (targetPos - transform.position).normalized.x * moveSpeed;
-        moveVector.y = -0.001f;
-        moveVector.z = moveSpeed;
-
-        return moveVector;
-    }
-
-
-    void MoveLane(bool goingRight)
-    {
-        desiredLane += (goingRight) ? 1 : -1;
-        desiredLane = Mathf.Clamp(desiredLane, 0, 2);
-    }
-
-
-    //void TurnLeft()
-    //{
-    //    this.transform.Rotate(Vector3.up, -90);
-    //}
-
-
-    //void TurnRight()
-    //{
-    //    this.transform.Rotate(Vector3.up, 90);
-    //}
 
 
 
@@ -414,15 +90,6 @@ public class CameraMove : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
         }
     }
-
-
-
-    //var dir:int = 0;
-    //if(rotateRight && rotateLeft) dir = 0;
-    //else if(rotateRight) dir = 1;
-    //elseif(rotateLeft) dir = -1;
-
-    //gameObject.transform.RotateAround(Vector3.zero, Vector3.up, dir* 20 * Time.deltaTime);
 
 }
 
@@ -454,48 +121,6 @@ public class CameraMove : MonoBehaviour
 
 
 
-//public float moveSpeed;
-
-
-//void FixedUpdate()
-//{
-//   MoveObj();
-
-//   if (Input.GetKeyDown(KeyCode.A)) {
-//      ChangeView01();
-//   }
-
-//   if (Input.GetKeyDown(KeyCode.S)) {
-//      ChangeView02();
-//   }
-//}
-
-
-//void MoveObj()
-//{
-//    float moveAmount = Time.smoothDeltaTime * moveSpeed;
-//    transform.Translate(0f, 0f, moveAmount);
-//}
-
-
-//void ChangeView01() {
-//	transform.position = new Vector3 (0, 2, 10);
-//	// x:0, y:1, z:52
-//	mainCamera.transform.localPosition = new Vector3 ( -8, 2, 0 );
-//	mainCamera.transform.localRotation = Quaternion.Euler (14, 90, 0);
-//}
-
-//void ChangeView02() {
-//	transform.position = new Vector3 (0, 2, 10);
-//	// x:0, y:1, z:52
-//	mainCamera.transform.localPosition = new Vector3 ( 0, 0, 0 );
-//	mainCamera.transform.localRotation = Quaternion.Euler ( 19, 180, 0 );
-//	moveSpeed = -20f;
-
-//}
-
-
-
 ///*-----------------------
 //Do rotation from mouse
 //-----------------------*/
@@ -506,6 +131,7 @@ public class CameraMove : MonoBehaviour
 //         mouseSensitivity * Input.GetAxis("Mouse X")
 //    );
 //}
+
 
 ///*-----------------------
 //Rotate the game object
@@ -528,23 +154,6 @@ public class CameraMove : MonoBehaviour
 //    this.transform.localRotation = Quaternion.Euler(angles);
 //}
 
-
-
-
-
-//Vector3 pos = transform.position;
-
-//if (Input.GetKeyDown(KeyCode.LeftArrow) && pos.x > -1)
-//{
-//    pos.x -= 1;
-//}
-
-//if (Input.GetKeyDown(KeyCode.RightArrow) && pos.x < 1)
-//{
-//    pos.x += 1;
-//}
-
-//transform.position = pos;
 
 
 

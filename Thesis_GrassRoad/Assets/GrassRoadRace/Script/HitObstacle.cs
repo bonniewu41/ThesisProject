@@ -23,7 +23,7 @@ public class HitObstacle : MonoBehaviour
     {
         if (collision.gameObject.name == "Character")
         {
-            Debug.Log("Collision with " + collision.gameObject.name);
+            //Debug.Log("Collision with " + collision.gameObject.name);
             hitHurdleSound.Play();
             ScoringSystem.scoreValue -= 10;
         }
