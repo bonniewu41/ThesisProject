@@ -10,8 +10,7 @@ public class CameraMove : MonoBehaviour
     /* =============== Public variables =============== */
     public float yaw;
     public float pitch;
-    public float moveSpeed = 4.0f;
-    public static int counter = 0;
+    public float moveSpeed = 2.0f;
     public float mouseSensitivity = 1f;
 
     public Rigidbody cam;

@@ -115,7 +115,7 @@ public class SpawnTargets : MonoBehaviour
 
             if (EnterArea.trigger_count == 3)
             {
-                zPos = (178 * 2) + TargetGroup[i];
+                zPos = (178 * 2 + 6) + TargetGroup[i];
             }
             else
             {

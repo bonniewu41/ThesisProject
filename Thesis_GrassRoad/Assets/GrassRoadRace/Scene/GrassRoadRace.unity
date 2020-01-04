@@ -3085,7 +3085,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   yaw: 0
   pitch: 0
-  moveSpeed: 4
+  moveSpeed: 3
   mouseSensitivity: 1
   cam: {fileID: 572548463}
   camMovement: {x: 0, y: 0, z: 0}
@@ -5390,9 +5390,6 @@ MonoBehaviour:
   zPos: 0
   maxTarget: 10
   addedDistance: 4
-  spawnTime: 0.1
-  repeatTime: 0.6
-  current_length: 0
 --- !u!1001 &900869240
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10601,7 +10598,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5918612198669346775}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1891174704
+--- !u!114 &1891174708
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
