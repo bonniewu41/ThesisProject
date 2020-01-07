@@ -33,7 +33,7 @@ public class CameraMove : MonoBehaviour
         CamRotation();
         UnlockCursor();
 
-        Get_turn(EnterArea.trigger_count);
+        GetTurn(EnterArea.trigger_count);
     }
 
 
@@ -46,7 +46,7 @@ public class CameraMove : MonoBehaviour
     /* Use number of triggers hit to determine direction to move forward to.
        NOTE: Player will need to turn their gaze direction by themselves.
      */
-    void Get_turn(int trigger)
+    void GetTurn(int trigger)
     {
         if (trigger > 6)
         {

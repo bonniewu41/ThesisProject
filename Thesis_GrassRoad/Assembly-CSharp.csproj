@@ -80,6 +80,7 @@
     <Compile Include="Assets\GrassRoadRace\Script\ScoringSystem.cs" />
     <Compile Include="Assets\GrassRoadRace\Script\SpawnTargets.cs" />
     <Compile Include="Assets\GrassRoadRace\Script\Target.cs" />
+    <Compile Include="Assets\GrassRoadRace\Script\TimeRemaining.cs" />
     <Compile Include="Assets\PenguRace\Script\CameraMotor.cs" />
     <Compile Include="Assets\PenguRace\Script\Coin.cs" />
     <Compile Include="Assets\PenguRace\Script\GameManager.cs" />

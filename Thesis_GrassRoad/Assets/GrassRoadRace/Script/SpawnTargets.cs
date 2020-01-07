@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SpawnTargets : MonoBehaviour
 {
+
     /* =============== Public variables =============== */
     public GameObject targetPrefab;
     public GameObject character;
@@ -92,6 +93,7 @@ public class SpawnTargets : MonoBehaviour
 
             activeTargets.Add(_targetClone);
         }
+
         if (EnterArea.trigger_count == 4)
         {
             spawnZ -= pathLength;
