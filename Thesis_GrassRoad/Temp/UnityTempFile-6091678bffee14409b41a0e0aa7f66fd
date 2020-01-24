@@ -309,6 +309,7 @@
 "Assets/GrassRoadRace/Script/ScoringSystem.cs"
 "Assets/GrassRoadRace/Script/SpawnTargets.cs"
 "Assets/GrassRoadRace/Script/Target.cs"
+"Assets/GrassRoadRace/Script/TimeRemaining.cs"
 "Assets/PenguRace/Script/CameraMotor.cs"
 "Assets/PenguRace/Script/Coin.cs"
 "Assets/PenguRace/Script/GameManager.cs"

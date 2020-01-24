@@ -15,6 +15,9 @@ public class SpawnTargets : MonoBehaviour
 
     public int maxTarget = 10;
     public int addedDistance = 4; // This adjusts how far targets should be located from the current character position
+
+    public static int spawnZCount = 0;
+    public static int spawnXCount = 0;
     /* ================================================ */
 
 
@@ -25,6 +28,8 @@ public class SpawnTargets : MonoBehaviour
     private float pathLength = 15.0f;
     private float spawnZ = 0.0f;
     private float spawnX = 0.0f;
+    //private int spawnZCount = 0;
+    //private int spawnXCount = 0;
 
     private List<GameObject> activeTargets;
     /* ================================================ */
@@ -47,24 +52,36 @@ public class SpawnTargets : MonoBehaviour
         {
             if (characterPosX < (spawnX + addedDistance))
             {
-                SpawnTarget_x();
-                DeleteTarget();
+                if (spawnXCount < 11)
+                {
+                    SpawnTarget_x();
+                    DeleteTarget();
+                }
+                
             }
         }
-        else if (EnterArea.trigger_count == 4) 
+        else if (EnterArea.trigger_count == 4) // case2: moving with -z
         {
+
             if (characterPosZ < (spawnZ - addedDistance))
             {
-                SpawnTarget_z();
-                DeleteTarget();
+                if (spawnZCount < 11)
+                {
+                    SpawnTarget_z();
+                    DeleteTarget();
+                }
             }
         }
         else
         {
             if (characterPosZ > (spawnZ - addedDistance))
             {
-                SpawnTarget_z();
-                DeleteTarget();
+                if (spawnZCount < 11)
+                {
+                    SpawnTarget_z();
+                    DeleteTarget();
+                }
+
             }
         }
     }
@@ -75,33 +92,39 @@ public class SpawnTargets : MonoBehaviour
     {
         List<int> firstTargetGroup = SelectTarget();
 
-        for (int i = 0; i < maxTarget; i++)
-        {
-            xPos = firstTargetGroup[i] - (184 * (EnterArea.trigger_count / 2));
-            yPos = Random.Range(2, 5);
+        //if (spawnZCount < 11)
+        //{
+            for (int i = 0; i < maxTarget; i++)
+            {
+                xPos = firstTargetGroup[i] - (184 * (EnterArea.trigger_count / 2));
+                yPos = Random.Range(2, 5);
+
+                if (EnterArea.trigger_count == 4)
+                {
+                    zPos = (int)(characterPosZ - Random.Range(9 + addedDistance, 14 + addedDistance));
+                }
+                else
+                {
+                    zPos = (int)(characterPosZ + Random.Range(9 + addedDistance, 14 + addedDistance));
+                }
+
+                _targetClone = Instantiate(targetPrefab, new Vector3(xPos, yPos, zPos), Quaternion.Euler(90, 0, 0));
+
+                activeTargets.Add(_targetClone);
+            }
 
             if (EnterArea.trigger_count == 4)
             {
-                zPos = (int)(characterPosZ - Random.Range(9 + addedDistance, 14 + addedDistance));
+                spawnZ -= pathLength;
             }
             else
             {
-                zPos = (int)(characterPosZ + Random.Range(9 + addedDistance, 14 + addedDistance));
+                spawnZ += pathLength;
             }
 
-            _targetClone = Instantiate(targetPrefab, new Vector3(xPos, yPos, zPos), Quaternion.Euler(90, 0, 0));
-
-            activeTargets.Add(_targetClone);
-        }
-
-        if (EnterArea.trigger_count == 4)
-        {
-            spawnZ -= pathLength;
-        }
-        else
-        {
-            spawnZ += pathLength;
-        }
+            spawnZCount++;
+            Debug.Log("Z: " + spawnZCount);
+        //} 
     }
 
 
@@ -112,7 +135,7 @@ public class SpawnTargets : MonoBehaviour
 
         for (int i = 0; i < maxTarget; i++)
         {
-            xPos = (int)(characterPosX - Random.Range(9 + addedDistance, 14 + addedDistance));
+            xPos = (int)(characterPosX - Random.Range(12 + addedDistance, 17 + addedDistance));
             yPos = Random.Range(2, 5);
 
             if (EnterArea.trigger_count == 3)
@@ -121,7 +144,7 @@ public class SpawnTargets : MonoBehaviour
             }
             else
             {
-                zPos = (178 * (EnterArea.trigger_count % 2)) + TargetGroup[i];
+                zPos = (178 * (EnterArea.trigger_count % 2)) + TargetGroup[i]; // 178*1 = where they are before
             }
 
             _targetClone = Instantiate(targetPrefab, new Vector3(xPos, yPos, zPos), Quaternion.Euler(90, 0, 0));
@@ -129,6 +152,10 @@ public class SpawnTargets : MonoBehaviour
             activeTargets.Add(_targetClone);
         }
         spawnX -= pathLength;
+
+        spawnXCount++;
+        Debug.Log("X: " + spawnXCount);
+
     }
 
 

@@ -9,12 +9,24 @@ public class EnterArea : MonoBehaviour
     public static int trigger_count = 0;
 
 
-    public bool OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
-        canTurn = true;
-        trigger_count++;
-        Debug.Log(trigger_count);
+        //canTurn = true;
 
-        return canTurn;
+        SpawnTargets.spawnXCount = 0;
+        SpawnTargets.spawnZCount = 0;
+
+        trigger_count++;
+
+        //return canTurn;
     }
+
+    //public bool onTriggerExit(Collider other)
+    //{
+    //    canTurn = false;
+
+    //    Debug.Log("Exits now: " + canTurn);
+
+    //    return canTurn;
+    //}
 }

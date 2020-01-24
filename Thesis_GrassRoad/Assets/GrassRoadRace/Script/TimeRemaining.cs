@@ -30,7 +30,7 @@ public class TimeRemaining : MonoBehaviour
         {
             time -= Time.deltaTime;
             string minutes = Mathf.Floor(time / 60).ToString("00");
-            string seconds = ((time % 60) - 1).ToString("00");
+            string seconds = ((time % 60)).ToString("00");
             timerText.text = "Time Left: " + minutes + ":" + seconds;
         }
     }
