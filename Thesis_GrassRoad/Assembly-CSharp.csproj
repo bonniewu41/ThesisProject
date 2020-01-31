@@ -74,12 +74,14 @@
     <Compile Include="Assets\GrassRoadRace\Script\CameraMove.cs" />
     <Compile Include="Assets\GrassRoadRace\Script\CollectCoin.cs" />
     <Compile Include="Assets\GrassRoadRace\Script\EnterArea.cs" />
+    <Compile Include="Assets\GrassRoadRace\Script\GameControl.cs" />
     <Compile Include="Assets\GrassRoadRace\Script\GunFire.cs" />
     <Compile Include="Assets\GrassRoadRace\Script\HitObstacle.cs" />
     <Compile Include="Assets\GrassRoadRace\Script\PathManager.cs" />
     <Compile Include="Assets\GrassRoadRace\Script\ScoringSystem.cs" />
     <Compile Include="Assets\GrassRoadRace\Script\SpawnTargets.cs" />
     <Compile Include="Assets\GrassRoadRace\Script\Target.cs" />
+    <Compile Include="Assets\GrassRoadRace\Script\Timer.cs" />
     <Compile Include="Assets\GrassRoadRace\Script\TimeRemaining.cs" />
     <Compile Include="Assets\PenguRace\Script\CameraMotor.cs" />
     <Compile Include="Assets\PenguRace\Script\Coin.cs" />

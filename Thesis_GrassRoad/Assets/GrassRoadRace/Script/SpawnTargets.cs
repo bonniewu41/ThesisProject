@@ -28,8 +28,6 @@ public class SpawnTargets : MonoBehaviour
     private float pathLength = 15.0f;
     private float spawnZ = 0.0f;
     private float spawnX = 0.0f;
-    //private int spawnZCount = 0;
-    //private int spawnXCount = 0;
 
     private List<GameObject> activeTargets;
     /* ================================================ */

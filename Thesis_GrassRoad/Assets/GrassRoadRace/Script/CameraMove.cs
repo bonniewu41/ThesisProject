@@ -22,7 +22,6 @@ public class CameraMove : MonoBehaviour
 
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
         cam = GetComponent<Rigidbody>();
         cam.isKinematic = false;
     }
@@ -31,7 +30,6 @@ public class CameraMove : MonoBehaviour
     void Update()
     {
         CamRotation();
-        UnlockCursor();
 
         GetTurn(EnterArea.trigger_count);
     }
@@ -78,15 +76,6 @@ public class CameraMove : MonoBehaviour
         yaw += mouseSensitivity * Input.GetAxis("Mouse X");
         pitch -= mouseSensitivity * Input.GetAxis("Mouse Y");
         this.transform.localRotation = Quaternion.Euler(pitch, yaw, 0.0f);
-    }
-
-
-    void UnlockCursor()
-    {
-        if (Input.GetButtonDown("Cancel"))
-        {
-            Cursor.lockState = CursorLockMode.None;
-        }
     }
 
 }
