@@ -10,11 +10,15 @@ public class CameraMove : MonoBehaviour
     /* =============== Public variables =============== */
     public float yaw;
     public float pitch;
-    public float moveSpeed = 1.7f;
     public float mouseSensitivity = 1f;
 
-    public Rigidbody cam;
+    public static float moveSpeed = 1.7f;
+
+    public static Rigidbody camRb;
     public Vector3 camMovement;
+
+    //public static float camPosZ;
+    //public static float camPosX;
 
     public AudioSource hitHurdleSound;
     /* ================================================ */
@@ -22,8 +26,11 @@ public class CameraMove : MonoBehaviour
 
     void Start()
     {
-        cam = GetComponent<Rigidbody>();
-        cam.isKinematic = false;
+        camRb = this.GetComponent<Rigidbody>();
+        camRb.isKinematic = false;
+
+        //camPosZ = this.transform.position.z;
+        //camPosX = this.transform.position.x;
     }
 
 
@@ -67,7 +74,31 @@ public class CameraMove : MonoBehaviour
 
     void SideMvmt(Vector3 direction)
     {
-        cam.MovePosition((Vector3)transform.position + (direction * moveSpeed * Time.deltaTime));
+        camRb.MovePosition((Vector3)transform.position + (direction * moveSpeed * Time.deltaTime));
+    }
+
+
+    // move character back to where it was 5 seconds ago.
+    public static void Penalty(Vector3 hitPos, int trigger)
+    {
+        Vector3 camRewind = camRb.position;
+        if (trigger > 6) // end case
+        {
+            
+        }
+        else if (trigger == 4) // negative case
+        {
+            
+        }
+        else if ((trigger % 2) == 1) // moving -x
+        {
+            
+        }
+        else // moving z (first and third)
+        {
+            camRewind.z = hitPos.z - CameraMove.moveSpeed * 5;
+            camRb.position = camRewind; 
+        }
     }
 
 

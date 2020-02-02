@@ -1,13 +1,14 @@
 ﻿<Properties StartupConfiguration="{B12345A1-0B17-E8E4-887E-DDCDC0F27FEB}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/GrassRoadRace/Script/GameControl.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/GrassRoadRace/Script/HitObstacle.cs">
     <Files>
-      <File FileName="Assets/GrassRoadRace/Script/CameraMove.cs" Line="34" Column="26" />
-      <File FileName="Assets/GrassRoadRace/Script/GameControl.cs" Line="95" Column="1" />
-      <File FileName="Assets/GrassRoadRace/Script/SpawnTargets.cs" Line="138" Column="77" />
-      <File FileName="Assets/GrassRoadRace/Script/EnterArea.cs" />
-      <File FileName="Assets/GrassRoadRace/Script/GunFire.cs" />
+      <File FileName="Assets/GrassRoadRace/Script/CameraMove.cs" Line="76" Column="1" />
+      <File FileName="Assets/GrassRoadRace/Script/GameControl.cs" Line="52" Column="1" />
+      <File FileName="Assets/GrassRoadRace/Script/SpawnTargets.cs" Line="30" Column="33" />
+      <File FileName="Assets/GrassRoadRace/Script/EnterArea.cs" Line="17" Column="38" />
+      <File FileName="Assets/GrassRoadRace/Script/GunFire.cs" Line="3" Column="1" />
       <File FileName="Assets/GrassRoadRace/Script/Target.cs" Line="1" Column="1" />
       <File FileName="Assets/GrassRoadRace/Script/Timer.cs" Line="101" Column="47" />
+      <File FileName="Assets/GrassRoadRace/Script/HitObstacle.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

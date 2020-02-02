@@ -3153,9 +3153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   yaw: 0
   pitch: 0
-  moveSpeed: 1.7
   mouseSensitivity: 1
-  cam: {fileID: 572548463}
   camMovement: {x: 0, y: 0, z: 0}
   hitHurdleSound: {fileID: 1691323945}
 --- !u!54 &572548463
@@ -11070,7 +11068,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minutes: 0
-  seconds: 10
+  seconds: 30
   timerText: {fileID: 911425552}
 --- !u!114 &1907552560
 MonoBehaviour:

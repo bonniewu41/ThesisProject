@@ -78,7 +78,6 @@ public class GameControl : MonoBehaviour
         characterCamera.SetActive(false);
         gameUI.SetActive(false);
 
-
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
