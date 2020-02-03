@@ -12,13 +12,11 @@ public class CameraMove : MonoBehaviour
     public float pitch;
     public float mouseSensitivity = 1f;
 
-    public static float moveSpeed = 1.7f;
+    //public static float moveSpeed = 1.7f;
+    public static float moveSpeed = 2.5f;
 
     public static Rigidbody camRb;
     public Vector3 camMovement;
-
-    //public static float camPosZ;
-    //public static float camPosX;
 
     public AudioSource hitHurdleSound;
     /* ================================================ */
@@ -28,16 +26,12 @@ public class CameraMove : MonoBehaviour
     {
         camRb = this.GetComponent<Rigidbody>();
         camRb.isKinematic = false;
-
-        //camPosZ = this.transform.position.z;
-        //camPosX = this.transform.position.x;
     }
 
 
     void Update()
     {
         CamRotation();
-
         GetTurn(EnterArea.trigger_count);
     }
 
@@ -49,8 +43,7 @@ public class CameraMove : MonoBehaviour
 
 
     /* Use number of triggers hit to determine direction to move forward to.
-       NOTE: Player will need to turn their gaze direction by themselves.
-     */
+       NOTE: Player will need to turn their gaze direction by themselves. */
     void GetTurn(int trigger)
     {
         if (trigger > 6)
@@ -78,27 +71,24 @@ public class CameraMove : MonoBehaviour
     }
 
 
-    // move character back to where it was 5 seconds ago.
+    /* move character back to where it was 5 seconds ago. */
     public static void Penalty(Vector3 hitPos, int trigger)
     {
         Vector3 camRewind = camRb.position;
-        if (trigger > 6) // end case
+        if (trigger == 4) // negative case
         {
-            
-        }
-        else if (trigger == 4) // negative case
-        {
-            
+            camRewind.z = hitPos.z + CameraMove.moveSpeed * 5;
         }
         else if ((trigger % 2) == 1) // moving -x
         {
-            
+            camRewind.x = hitPos.x + CameraMove.moveSpeed * 5;
         }
         else // moving z (first and third)
         {
             camRewind.z = hitPos.z - CameraMove.moveSpeed * 5;
-            camRb.position = camRewind; 
         }
+
+        camRb.position = camRewind;
     }
 
 

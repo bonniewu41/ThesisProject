@@ -66,6 +66,8 @@ public class GameControl : MonoBehaviour
         characterCamera.SetActive(true);
         gameUI.SetActive(true);
 
+        Cursor.lockState = CursorLockMode.Locked;
+
     }
 
     public void endGame()
@@ -80,7 +82,6 @@ public class GameControl : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-
     }
 
 
