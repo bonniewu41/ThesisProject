@@ -6,18 +6,20 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour
 {
 
-    // Use this for initialization
+    /* =============== Public variables =============== */
     [SerializeField]
-    private int minutes; //Amount of initial minutes. This variable doesn't change its value during the execution of the game.
+    private int minutes;
     [SerializeField]
-    private int seconds; //Amount of initial seconds. This variable doesn't change its value during the execution of the game.
+    private int seconds;
 
-    private int m, s; //Current time values. These variables are modified as time goes by.
+    private int m, s;
 
     [SerializeField]
-    private Text timerText; //Here we will save a reference of the text element of the Canvas.
+    private Text timerText;
 
-    private GameControl gameControl; //Here we store a reference to the GameControl component that is present in the GameObject Control hierarchy.
+    //store a reference to the GameControl component that is present in the GameObject Control hierarchy.
+    private GameControl gameControl; 
+    /* ================================================ */
 
 
     void Start()

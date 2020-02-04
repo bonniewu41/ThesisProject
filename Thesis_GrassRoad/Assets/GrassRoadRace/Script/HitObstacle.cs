@@ -6,8 +6,8 @@ public class HitObstacle : MonoBehaviour
 {
 
     public AudioSource hitHurdleSound;
-
     private Vector3 characterHitPos;
+
 
     void OnCollisionEnter(Collision collision)
     {

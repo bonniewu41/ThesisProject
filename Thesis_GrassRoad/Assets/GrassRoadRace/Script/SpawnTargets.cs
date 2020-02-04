@@ -90,39 +90,36 @@ public class SpawnTargets : MonoBehaviour
     {
         List<int> firstTargetGroup = SelectTarget();
 
-        //if (spawnZCount < 11)
-        //{
-            for (int i = 0; i < maxTarget; i++)
-            {
-                xPos = firstTargetGroup[i] - (184 * (EnterArea.trigger_count / 2));
-                yPos = Random.Range(2, 5);
-
-                if (EnterArea.trigger_count == 4)
-                {
-                    zPos = (int)(characterPosZ - Random.Range(9 + addedDistance, 14 + addedDistance));
-                }
-                else
-                {
-                    zPos = (int)(characterPosZ + Random.Range(9 + addedDistance, 14 + addedDistance));
-                }
-
-                _targetClone = Instantiate(targetPrefab, new Vector3(xPos, yPos, zPos), Quaternion.Euler(90, 0, 0));
-
-                activeTargets.Add(_targetClone);
-            }
+        for (int i = 0; i < maxTarget; i++)
+        {
+            xPos = firstTargetGroup[i] - (184 * (EnterArea.trigger_count / 2));
+            yPos = Random.Range(2, 5);
 
             if (EnterArea.trigger_count == 4)
             {
-                spawnZ -= pathLength;
+                zPos = (int)(characterPosZ - Random.Range(9 + addedDistance, 14 + addedDistance));
             }
             else
             {
-                spawnZ += pathLength;
+                zPos = (int)(characterPosZ + Random.Range(9 + addedDistance, 14 + addedDistance));
             }
 
-            spawnZCount++;
-            Debug.Log("Z: " + spawnZCount);
-        //} 
+            _targetClone = Instantiate(targetPrefab, new Vector3(xPos, yPos, zPos), Quaternion.Euler(90, 0, 0));
+
+            activeTargets.Add(_targetClone);
+        }
+
+        if (EnterArea.trigger_count == 4)
+        {
+            spawnZ -= pathLength;
+        }
+        else
+        {
+            spawnZ += pathLength;
+        }
+
+        spawnZCount++;
+        Debug.Log("Z: " + spawnZCount);
     }
 
 

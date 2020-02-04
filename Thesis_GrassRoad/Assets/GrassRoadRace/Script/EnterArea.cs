@@ -6,12 +6,11 @@ public class EnterArea : MonoBehaviour
 {
 
     public static bool canTurn;
-    public static int trigger_count = 0;
+    public static int trigger_count;
 
 
     public void OnTriggerEnter(Collider other)
     {
-        //canTurn = true;
 
         SpawnTargets.spawnXCount = 0;
         SpawnTargets.spawnZCount = 0;
