@@ -3166,6 +3166,7 @@ MonoBehaviour:
   mouseSensitivity: 1
   camMovement: {x: 0, y: 0, z: 0}
   hitHurdleSound: {fileID: 1691323945}
+  gameControl: {fileID: 1907552560}
 --- !u!54 &572548463
 Rigidbody:
   m_ObjectHideFlags: 0

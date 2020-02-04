@@ -19,7 +19,9 @@ public class CameraMove : MonoBehaviour
     public Vector3 camMovement;
 
     public AudioSource hitHurdleSound;
+    public GameControl gameControl;
     /* ================================================ */
+
 
 
     void Start()
@@ -49,6 +51,7 @@ public class CameraMove : MonoBehaviour
         if (trigger > 6)
         {
             camMovement = new Vector3(0, 0, 0);
+            gameControl.GetComponent<GameControl>().endGame(); // end the game when reaches ending obstacle
         }
         else if (trigger == 4)
         {

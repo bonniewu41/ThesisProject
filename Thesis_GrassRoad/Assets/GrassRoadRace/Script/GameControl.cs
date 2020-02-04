@@ -26,6 +26,8 @@ public class GameControl : MonoBehaviour
     private Timer timer;
     /* ================================================ */
 
+    
+
 
 
     void Start()
@@ -83,21 +85,5 @@ public class GameControl : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
-
-
-
-    //private void placePlayerRandomly()
-    //{
-
-    //    spawnPoints = GameObject.FindGameObjectsWithTag(tag); //Find all the objects in the hierarchy that have the specified tag and assign it to the spawnPoints vector.
-
-    //    int rand = Random.Range(0, spawnPoints.Length); //Define a random number that can be between 0 and the size of spawnPoints minus 1.
-
-    //    selectedSpawnPoint = spawnPoints[rand]; //Assign the random spawn point to the selectedSpawnPoint GameObject.
-
-    //    player = Instantiate(playerPrefab, selectedSpawnPoint.transform.position, selectedSpawnPoint.transform.rotation); //Instantiate the GameObject playerPrefab and keep it in the GameObject player.
-
-    //}
-
 }
 

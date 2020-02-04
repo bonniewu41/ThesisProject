@@ -17,16 +17,5 @@ public class EnterArea : MonoBehaviour
         SpawnTargets.spawnZCount = 0;
 
         trigger_count++;
-
-        //return canTurn;
     }
-
-    //public bool onTriggerExit(Collider other)
-    //{
-    //    canTurn = false;
-
-    //    Debug.Log("Exits now: " + canTurn);
-
-    //    return canTurn;
-    //}
 }
