@@ -46,9 +46,9 @@ public class SpawnTargets : MonoBehaviour
         characterPosZ = character.transform.position.z;
         characterPosX = character.transform.position.x;
 
-        if ((EnterArea.trigger_count % 2) == 1) // case1 : moving with x
+        if (EnterArea.trigger_count == 1) // case1 : moving with -x
         {
-            if (characterPosX < (spawnX + addedDistance))
+            if (characterPosX < spawnX - 10)
             {
                 if (spawnXCount < 11)
                 {
@@ -58,10 +58,34 @@ public class SpawnTargets : MonoBehaviour
                 
             }
         }
+        else if (EnterArea.trigger_count == 3)
+        {
+            if (characterPosX < spawnX - 20)
+            {
+                if (spawnXCount < 11)
+                {
+                    SpawnTarget_x();
+                    DeleteTarget();
+                }
+
+            }
+        }
+        else if (EnterArea.trigger_count == 5)
+        {
+            if (characterPosX - 10 < spawnX - 35)
+            {
+                if (spawnXCount < 11)
+                {
+                    SpawnTarget_x();
+                    DeleteTarget();
+                }
+
+            }
+        }
         else if (EnterArea.trigger_count == 4) // case2: moving with -z
         {
 
-            if (characterPosZ < (spawnZ - addedDistance))
+            if (characterPosZ < spawnZ + 10)
             {
                 if (spawnZCount < 11)
                 {
@@ -130,16 +154,16 @@ public class SpawnTargets : MonoBehaviour
 
         for (int i = 0; i < maxTarget; i++)
         {
-            xPos = (int)(characterPosX - Random.Range(12 + addedDistance, 17 + addedDistance));
+            xPos = (int)(characterPosX - Random.Range(13, 18));
             yPos = Random.Range(2, 5);
 
             if (EnterArea.trigger_count == 3)
             {
-                zPos = (178 * 2 + 6) + TargetGroup[i];
+                zPos = (int)(178.4 * 2 + 5) + TargetGroup[i];
             }
             else
             {
-                zPos = (178 * (EnterArea.trigger_count % 2)) + TargetGroup[i]; // 178*1 = where they are before
+                zPos = (int)(178.4 * (EnterArea.trigger_count % 2)) + TargetGroup[i]; // 178*1 = where they are before
             }
 
             _targetClone = Instantiate(targetPrefab, new Vector3(xPos, yPos, zPos), Quaternion.Euler(90, 0, 0));
