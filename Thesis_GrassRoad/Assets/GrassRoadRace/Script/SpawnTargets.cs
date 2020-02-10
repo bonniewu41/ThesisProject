@@ -119,7 +119,7 @@ public class SpawnTargets : MonoBehaviour
         }
 
         spawnZCount++;
-        Debug.Log("Z: " + spawnZCount);
+        //Debug.Log("Z: " + spawnZCount);
     }
 
 
@@ -149,7 +149,7 @@ public class SpawnTargets : MonoBehaviour
         spawnX -= pathLength;
 
         spawnXCount++;
-        Debug.Log("X: " + spawnXCount);
+        //Debug.Log("X: " + spawnXCount);
 
     }
 

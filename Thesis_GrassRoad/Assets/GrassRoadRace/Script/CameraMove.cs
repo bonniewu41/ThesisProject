@@ -13,7 +13,7 @@ public class CameraMove : MonoBehaviour
     public float mouseSensitivity = 1f;
 
     //public static float moveSpeed = 1.7f;
-    public static float moveSpeed = 2.5f;
+    public static float moveSpeed = 3f;
 
     public static Rigidbody camRb;
     public Vector3 camMovement;
@@ -33,7 +33,7 @@ public class CameraMove : MonoBehaviour
 
     void Update()
     {
-        CamRotation();
+        DoCamRotation();
         GetTurn(EnterArea.trigger_count);
     }
 
@@ -95,94 +95,56 @@ public class CameraMove : MonoBehaviour
     }
 
 
-    void CamRotation()
+    /* rotation based on mouse */
+    void DoCamRotation()
     {
         yaw += mouseSensitivity * Input.GetAxis("Mouse X");
         pitch -= mouseSensitivity * Input.GetAxis("Mouse Y");
-        this.transform.localRotation = Quaternion.Euler(pitch, yaw, 0.0f);
+        Rotate(pitch,yaw, EnterArea.trigger_count);
     }
 
+
+    /* Constrain rotation angle on y-axis to allow only 180deg each case*/
+    void Rotate(float deltaX, float deltaY, int trigger)
+    {
+        Vector3 angles = transform.localRotation.eulerAngles;
+        angles.x = deltaX;
+        angles.y = deltaY;
+
+        if (trigger == 4) // negative case
+        { // [-270deg to -90deg]
+            if (angles.y > -90f && angles.y < 90f || angles.y < -270f && angles.y > -450f)
+            {
+                if (deltaY > -180) angles.y = -90f;
+                else angles.y = -270f;
+            }
+        }
+        else if ((trigger % 2) == 1) // moving -x
+        { // [-180deg to 0deg]
+            if (angles.y > 0f && angles.y < 180f || angles.y < -180f && angles.y > -360f)
+            { 
+                if (deltaY > -90) angles.y = 0f;
+                else angles.y = -180f;
+            }
+        }
+        else // moving z (first and third)
+        { // [-90deg to 90deg]
+            if (angles.y > 90f && angles.y < 270f || angles.y < -90f && angles.y > -270f)
+            {
+                if (deltaY > 0) angles.y = 90f;
+                else angles.y = -90f;
+            }
+        }
+
+        this.transform.localRotation = Quaternion.Euler(angles.x, angles.y, 0.0f);
+    }
 }
 
 
 
-
-
-
-
-
-
-
-
-/*----------------------------------------------------------------------------*/
-
-
-//void MouseRotate()
+//void CamRotation()
 //{
-//    var md = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-
-//    md = Vector2.Scale(md, new Vector2(sensitivity * smoothing, sensitivity * smoothing));
-//    smoothV.x = Mathf.Lerp(smoothV.x, md.x, 1f / smoothing);
-//    smoothV.y = Mathf.Lerp(smoothV.y, md.y, 1f / smoothing);
-//    mouseLook += smoothV;
-
-//    transform.localRotation = Quaternion.AngleAxis(-mouseLook.y, Vector3.right);
-//    character.transform.localRotation = Quaternion.AngleAxis(mouseLook.x, character.transform.up);
+//    yaw += mouseSensitivity * Input.GetAxis("Mouse X");
+//    pitch -= mouseSensitivity * Input.GetAxis("Mouse Y");
+//    this.transform.localRotation = Quaternion.Euler(pitch, yaw, 0.0f); // (x-axis, y-axis, z-axis)
 //}
-
-
-
-///*-----------------------
-//Do rotation from mouse
-//-----------------------*/
-//void doRotation()
-//{
-//    rotate(
-//        -mouseSensitivity * Input.GetAxis("Mouse Y"),
-//         mouseSensitivity * Input.GetAxis("Mouse X")
-//    );
-//}
-
-
-///*-----------------------
-//Rotate the game object
-//-----------------------*/
-//void rotate(float deltaX, float deltaY)
-//{
-//    //1. Rotate around x-axis & y-axis
-//    Vector3 angles = transform.localRotation.eulerAngles;
-//    angles.x += deltaX;
-//    angles.y += deltaY + 180;
-
-//    //2. Constrain the angle around x-axis in [0 ~ 90] or [270 ~ 360] degrees
-//    //if (angles.x > 90f && angles.x < 270f)
-//    //{
-//    //    if (deltaX > 0) angles.x = 90f;
-//    //    else angles.x = 270f;
-//    //}
-
-//    //3. Assign rotation
-//    this.transform.localRotation = Quaternion.Euler(angles);
-//}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
