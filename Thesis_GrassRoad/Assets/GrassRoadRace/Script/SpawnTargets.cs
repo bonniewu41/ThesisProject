@@ -60,7 +60,7 @@ public class SpawnTargets : MonoBehaviour
         }
         else if (EnterArea.trigger_count == 3)
         {
-            if (characterPosX < spawnX - 20)
+            if (characterPosX < spawnX - 25)
             {
                 if (spawnXCount < 11)
                 {
@@ -72,7 +72,7 @@ public class SpawnTargets : MonoBehaviour
         }
         else if (EnterArea.trigger_count == 5)
         {
-            if (characterPosX - 10 < spawnX - 35)
+            if (characterPosX < spawnX - 40)
             {
                 if (spawnXCount < 11)
                 {
@@ -85,7 +85,7 @@ public class SpawnTargets : MonoBehaviour
         else if (EnterArea.trigger_count == 4) // case2: moving with -z
         {
 
-            if (characterPosZ < spawnZ + 10)
+            if (characterPosZ < spawnZ + 15)
             {
                 if (spawnZCount < 11)
                 {
@@ -174,7 +174,6 @@ public class SpawnTargets : MonoBehaviour
 
         spawnXCount++;
         //Debug.Log("X: " + spawnXCount);
-
     }
 
 
