@@ -71,6 +71,7 @@
     <Compile Include="Assets\DemoShoot\Scripts\Player.cs" />
     <Compile Include="Assets\DemoShoot\Scripts\SelfDestroy.cs" />
     <Compile Include="Assets\DemoShoot\Scripts\Shooting.cs" />
+    <Compile Include="Assets\GrassRoadRace\PlayerControls.cs" />
     <Compile Include="Assets\GrassRoadRace\Script\CameraMove.cs" />
     <Compile Include="Assets\GrassRoadRace\Script\EnterArea.cs" />
     <Compile Include="Assets\GrassRoadRace\Script\GameControl.cs" />
@@ -185,6 +186,9 @@
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>/Users/Bonnie 1/Documents/Unity/VR_environment/ThesisProject/Thesis_GrassRoad/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.InputSystem">
+      <HintPath>/Users/Bonnie 1/Documents/Unity/VR_environment/ThesisProject/Thesis_GrassRoad/Library/ScriptAssemblies/Unity.InputSystem.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>/Users/Bonnie 1/Documents/Unity/VR_environment/ThesisProject/Thesis_GrassRoad/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>

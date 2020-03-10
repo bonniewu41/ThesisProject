@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 public class CameraMove : MonoBehaviour
 {
@@ -12,16 +13,40 @@ public class CameraMove : MonoBehaviour
     public float pitch;
     public float mouseSensitivity = 1f;
 
-    //public static float moveSpeed = 1.7f;
-    public static float moveSpeed = 3f;
+    public static float moveSpeed = 1.7f;
+    //public static float moveSpeed = 3f;
 
     public static Rigidbody camRb;
     public Vector3 camMovement;
 
     public AudioSource hitHurdleSound;
     public GameControl gameControl;
+
+    PlayerControls controls;
+    float leftRightMvmt;
+    Vector2 gazeDirection;
     /* ================================================ */
 
+
+    void Awake()
+    {
+        controls = new PlayerControls();
+
+        controls.Gameplay.Movement.performed += context => leftRightMvmt = context.ReadValue<float>();
+
+        controls.Gameplay.Rotation.performed += context => gazeDirection = context.ReadValue<Vector2>();
+        controls.Gameplay.Rotation.canceled += context => gazeDirection = Vector2.zero;
+    }
+
+    private void OnEnable()
+    {
+        controls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        controls.Disable();
+    }
 
 
     void Start()
@@ -55,15 +80,18 @@ public class CameraMove : MonoBehaviour
         }
         else if (trigger == 4)
         {
-            camMovement = new Vector3((-1) * (Input.GetAxis("Horizontal")), 0, -moveSpeed);
+            //camMovement = new Vector3((-1) * (Input.GetAxis("Horizontal")), 0, -moveSpeed);
+            camMovement = new Vector3((-1) * leftRightMvmt, 0, -moveSpeed);
         }
         else if ((trigger % 2) == 1)
         {
-            camMovement = new Vector3(-moveSpeed, 0, Input.GetAxis("Horizontal"));
+            //camMovement = new Vector3(-moveSpeed, 0, Input.GetAxis("Horizontal"));
+            camMovement = new Vector3(-moveSpeed, 0, leftRightMvmt);
         }
         else
         {
-            camMovement = new Vector3(Input.GetAxis("Horizontal"), 0, moveSpeed);
+            //camMovement = new Vector3(Input.GetAxis("Horizontal"), 0, moveSpeed);
+            camMovement = new Vector3(leftRightMvmt, 0, moveSpeed);
         }
     }
 
@@ -98,9 +126,11 @@ public class CameraMove : MonoBehaviour
     /* rotation based on mouse */
     void DoCamRotation()
     {
-        yaw += mouseSensitivity * Input.GetAxis("Mouse X");
-        pitch -= mouseSensitivity * Input.GetAxis("Mouse Y");
-        Rotate(pitch,yaw, EnterArea.trigger_count);
+        //yaw += mouseSensitivity * Input.GetAxis("Mouse X");
+        //pitch -= mouseSensitivity * Input.GetAxis("Mouse Y");
+        yaw += mouseSensitivity * gazeDirection.x;
+        pitch -= mouseSensitivity * gazeDirection.y;
+        Rotate(pitch, yaw, EnterArea.trigger_count);
     }
 
 
@@ -136,8 +166,18 @@ public class CameraMove : MonoBehaviour
             }
         }
 
+        if (angles.x > 90f && angles.x < 270f)
+        {
+            if (deltaX > 0) angles.x = 90f;
+            else angles.x = 270f;
+        }
+
         this.transform.localRotation = Quaternion.Euler(angles.x, angles.y, 0.0f);
     }
+
+
+    
+
 }
 
 

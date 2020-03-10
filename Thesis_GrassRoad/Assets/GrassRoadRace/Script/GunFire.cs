@@ -9,13 +9,32 @@ public class GunFire : MonoBehaviour
     public ParticleSystem muzzleFlash;
     public AudioSource gunShot;
 
-    void Update()
+    PlayerControls controls;
+
+    void Awake()
     {
-        if (Input.GetButtonDown("Fire1"))
-        {
-            Shoot();
-        }
+        controls = new PlayerControls();
+
+        controls.Gameplay.Shoot.performed += context => Shoot();
     }
+
+    private void OnEnable()
+    {
+        controls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        controls.Disable();
+    }
+
+    //void Update()
+    //{
+    //    if (Input.GetButtonDown("Fire1"))
+    //    {
+    //        Shoot();
+    //    }
+    //}
 
     void Shoot()
     {
