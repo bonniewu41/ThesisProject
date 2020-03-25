@@ -28,6 +28,14 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "End",
+                    "type": "Button",
+                    "id": "60cbbf34-2580-4b55-93ab-ca541cc48ace",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -38,17 +46,6 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Rotation",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "2bbb616d-28d9-4432-8a44-0f0ca7b5c8f6",
-                    "path": "<Mouse>/delta",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
                     "action": "Rotation",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -112,7 +109,7 @@
                     "name": "Arrows",
                     "id": "8e101cd5-6002-433f-bd6d-780153e521cf",
                     "path": "1DAxis",
-                    "interactions": "Press",
+                    "interactions": "Press(behavior=2)",
                     "processors": "",
                     "groups": "",
                     "action": "Movement",
@@ -140,6 +137,17 @@
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "83674dfc-e3d6-45ac-b8e0-49ba70ad52fb",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "End",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

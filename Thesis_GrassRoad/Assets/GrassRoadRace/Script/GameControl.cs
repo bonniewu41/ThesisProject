@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 
 public class GameControl : MonoBehaviour
@@ -24,15 +27,40 @@ public class GameControl : MonoBehaviour
     private GameObject gameUI; //score, time left, crosshair
 
     private Timer timer;
+
+    PlayerControls controls;
     /* ================================================ */
 
-    
 
+    void Awake()
+    {
+        controls = new PlayerControls();
+
+        controls.Gameplay.End.performed += context => endGame();
+    }
+
+    private void OnEnable()
+    {
+        controls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        controls.Disable();
+    }
 
 
     void Start()
     {
         timer = gameObject.GetComponent<Timer>(); //We find the reference of the Timer Script
+        //sceneCamera.SetActive(false);
+        //menuUI.SetActive(false);
+
+
+        //spawnTargets.SetActive(true);
+        //characterCamera.SetActive(true);
+        //gameUI.SetActive(true);
+
         sceneCamera.SetActive(true);
         menuUI.SetActive(true);
 
@@ -46,16 +74,16 @@ public class GameControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //In each frame it is checked whether the R key was pressed.
-        if (Input.GetKeyDown(KeyCode.R))
-        { 
-            SceneManager.LoadScene(0); //Load scene 0. So far we only have one scene.
-        }
+        ////In each frame it is checked whether the R key was pressed.
+        //if (Input.GetKeyDown(KeyCode.R))
+        //{ 
+        //    SceneManager.LoadScene(0); //Load scene 0. So far we only have one scene.
+        //}
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-        { 
-            endGame();
-        }
+        //if (Input.GetKeyDown(KeyCode.Escape))
+        //{ 
+        //    endGame();
+        //}
     }
 
     public void startGame()
