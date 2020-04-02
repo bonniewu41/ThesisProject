@@ -53,20 +53,22 @@ public class GameControl : MonoBehaviour
     void Start()
     {
         timer = gameObject.GetComponent<Timer>(); //We find the reference of the Timer Script
-        //sceneCamera.SetActive(false);
-        //menuUI.SetActive(false);
+        //scenecamera.setactive(false);
+        //menuui.setactive(false);
 
 
-        //spawnTargets.SetActive(true);
-        //characterCamera.SetActive(true);
-        //gameUI.SetActive(true);
+        //spawntargets.setactive(true);
+        //charactercamera.setactive(true);
+        //gameui.setactive(true);
+        timer.startTimer();
+        Cursor.lockState = CursorLockMode.Locked;
 
-        sceneCamera.SetActive(true);
-        menuUI.SetActive(true);
+        //sceneCamera.SetActive(true);
+        //menuUI.SetActive(true);
 
-        spawnTargets.SetActive(false);
-        characterCamera.SetActive(false);
-        gameUI.SetActive(false);
+        //spawnTargets.SetActive(false);
+        //characterCamera.SetActive(false);
+        //gameUI.SetActive(false);
 
     }
 
@@ -86,29 +88,29 @@ public class GameControl : MonoBehaviour
         //}
     }
 
-    public void startGame()
-    {
-        timer.startTimer();
-        sceneCamera.SetActive(false);
-        menuUI.SetActive(false);
+    //public void startGame()
+    //{
+    //    timer.startTimer();
+    //    sceneCamera.SetActive(false);
+    //    menuUI.SetActive(false);
 
-        spawnTargets.SetActive(true);
-        characterCamera.SetActive(true);
-        gameUI.SetActive(true);
+    //    spawnTargets.SetActive(true);
+    //    characterCamera.SetActive(true);
+    //    gameUI.SetActive(true);
 
-        Cursor.lockState = CursorLockMode.Locked;
+    //    Cursor.lockState = CursorLockMode.Locked;
 
-    }
+    //}
 
     public void endGame()
     {
         timer.stopTimer();
-        sceneCamera.SetActive(true);
-        menuUI.SetActive(true);
+        //sceneCamera.SetActive(true);
+        //menuUI.SetActive(true);
 
-        spawnTargets.SetActive(false);
-        characterCamera.SetActive(false);
-        gameUI.SetActive(false);
+        //spawnTargets.SetActive(false);
+        //characterCamera.SetActive(false);
+        //gameUI.SetActive(false);
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
