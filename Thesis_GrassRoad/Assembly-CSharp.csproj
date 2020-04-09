@@ -57,6 +57,7 @@
   <ItemGroup>
      <Compile Include="Assets\GrassRoadRace\PlayerControls.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\CameraMove.cs" />
+     <Compile Include="Assets\GrassRoadRace\Script\CrossHair.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\EnterArea.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\GameControl.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\GunFire.cs" />
@@ -515,6 +516,7 @@
      <None Include="Assets\Oculus\SampleFramework\Core\CustomHands\Shaders\Hands_02.shader" />
      <None Include="Assets\VRSample\VRSampleScenes\Shaders\UIOverlay.shader" />
      <None Include="Assets\Oculus\SampleFramework\Core\Video\Plugins\Android\Audio360\ThirdPartyNotices.txt" />
+     <None Include="Assets\GrassRoadRace\Texture\crosshair_shader.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
      <None Include="Assets\Oculus\Avatar\Resources\Materials\AvatarSurfaceShaderSelfOccluding.shader" />
