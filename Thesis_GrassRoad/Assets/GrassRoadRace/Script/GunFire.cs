@@ -11,31 +11,31 @@ public class GunFire : MonoBehaviour
 
     PlayerControls controls;
 
-    void Awake()
-    {
-        controls = new PlayerControls();
-
-        controls.Gameplay.Shoot.performed += context => Shoot();
-    }
-
-    private void OnEnable()
-    {
-        controls.Enable();
-    }
-
-    private void OnDisable()
-    {
-        controls.Disable();
-    }
-
-
-    //void Update()
+    //void Awake()
     //{
-    //    if (Input.GetButtonDown("Fire1"))
-    //    {
-    //        Shoot();
-    //    }
+    //    controls = new PlayerControls();
+
+    //    controls.Gameplay.Shoot.performed += context => Shoot();
     //}
+
+    //private void OnEnable()
+    //{
+    //    controls.Enable();
+    //}
+
+    //private void OnDisable()
+    //{
+    //    controls.Disable();
+    //}
+
+
+    void Update()
+    {
+        if (Input.GetButtonDown("Fire1"))
+        {
+            Shoot();
+        }
+    }
 
     void Shoot()
     {

@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class CrossHair : MonoBehaviour
 {
-    public Camera CameraFacing;
+    //public Camera CameraFacing;
+
+    public Transform gunBarrelTransform;
     private Vector3 originalScale;
 
     // Start is called before the first frame update
@@ -18,17 +20,18 @@ public class CrossHair : MonoBehaviour
     {
         RaycastHit hit;
         float distance;
-        if (Physics.Raycast(new Ray(CameraFacing.transform.position, CameraFacing.transform.rotation * Vector3.forward), out hit))
+        if (Physics.Raycast(new Ray(gunBarrelTransform.transform.position, gunBarrelTransform.transform.rotation * Vector3.forward), out hit))
         {
             distance = hit.distance;
         }
         else
         {
-            distance = CameraFacing.farClipPlane * 0.95f;
+           // distance = gunBarrelTransform.farClipPlane * 0.95f;
+           distance = gunBarrelTransform.position.z * 10000;
         }
 
-        transform.position = CameraFacing.transform.position + CameraFacing.transform.rotation * Vector3.forward * distance;
-        transform.LookAt(CameraFacing.transform.position);
+        transform.position = gunBarrelTransform.transform.position + gunBarrelTransform.transform.rotation * Vector3.forward * distance;
+        transform.LookAt(gunBarrelTransform.transform.position);
         transform.Rotate(0.0f, 180.0f, 0.0f);
         
         if (distance < 10.0f)

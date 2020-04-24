@@ -5,10 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/GrassRoadRace/Scene/Menu.unity
-    guid: 9c1f97bdb0baff640a98bd66cf22f267
-  - enabled: 1
-    path: Assets/GrassRoadRace/Scene/Game.unity
-    guid: e323a50016ef3484f9e0d4d42c6bbc2b
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}
