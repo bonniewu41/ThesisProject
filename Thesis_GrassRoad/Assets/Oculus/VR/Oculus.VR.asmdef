@@ -1,6 +1,6 @@
 {
     "name": "Oculus.VR",
-    "references": [Unity.ugui],
+    "references": [],
     "optionalUnityReferences": [],
     "includePlatforms": [],
     "excludePlatforms": [],

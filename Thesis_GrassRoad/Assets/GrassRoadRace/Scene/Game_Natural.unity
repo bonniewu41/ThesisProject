@@ -1064,9 +1064,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e462e70836dacb47b0c74f65c42d03b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  muzzleFlash: {fileID: 332882911}
-  gunShot: {fileID: 1197798071}
-  gunBarrelTransform: {fileID: 2010169579}
+  muzzleFlash: {fileID: 0}
+  gunShot: {fileID: 0}
+  gunBarrelTransform: {fileID: 0}
 --- !u!1001 &323442719
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1108,12 +1108,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7817dc9ad2423344b2e740174f38c36, type: 3}
---- !u!198 &332882911 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 1332295482, guid: 6f1a7354265853f44b0ed5e2e43676ad,
-    type: 3}
-  m_PrefabInstance: {fileID: 1359926961}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &336564202 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 480034, guid: 2ce83dba6e991a8469c95f70e0aba68e,
@@ -2026,8 +2020,8 @@ MonoBehaviour:
   pitch: 0
   mouseSensitivity: 1
   camMovement: {x: 0, y: 0, z: 0}
-  hitHurdleSound: {fileID: 1691323945}
-  gameControl: {fileID: 1907552560}
+  hitHurdleSound: {fileID: 0}
+  gameControl: {fileID: 0}
 --- !u!54 &572548463
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5344,10 +5338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cccd2f07d72b41f69903ee87d5c9059, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pathPrefabs:
-  - {fileID: 2466348103202370441, guid: 7ac748f75e5a042138823c2aa9fc9b02, type: 3}
-  - {fileID: 7931544664222650885, guid: 621853da2664e4e4db6daf73990bf6f8, type: 3}
-  - {fileID: 8015675752484559665, guid: 2169db9aebe8342f78327ab3bcc48da2, type: 3}
+  pathPrefabs: []
   mainCamera: {fileID: 0}
 --- !u!4 &1377977393
 Transform:
@@ -7279,7 +7270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30e05655f71984022ba9b12ce6c7c74d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minutes: 7
+  minutes: 0
   seconds: 0
   timerText: {fileID: 911425552}
 --- !u!114 &1907552560
@@ -7294,11 +7285,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af097ee6cd02c42c2b4603553eb0ee6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnTargets: {fileID: 898932014}
-  sceneCamera: {fileID: 1416284233}
+  spawnTargets: {fileID: 0}
+  sceneCamera: {fileID: 0}
   characterCamera: {fileID: 0}
-  menuUI: {fileID: 1778016539}
-  gameUI: {fileID: 1468607609}
+  menuUI: {fileID: 0}
+  gameUI: {fileID: 0}
 --- !u!1 &1912898470
 GameObject:
   m_ObjectHideFlags: 0
