@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/GrassRoadRace/Scene/Game_Natural.unity
+- path: d:/Users/HFE lab/Desktop/TestXR/Assets/Scenes/SampleScene.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
