@@ -5850,7 +5850,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 29aefb354c7bf5f44bdb6724d5d2bf04, type: 3}
+    m_Font: {fileID: 12800000, guid: 687dcec43b2f746efa5a1ceaf3ba0276, type: 3}
     m_FontSize: 10
     m_FontStyle: 1
     m_BestFit: 0
@@ -7459,7 +7459,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 29aefb354c7bf5f44bdb6724d5d2bf04, type: 3}
+    m_Font: {fileID: 12800000, guid: 687dcec43b2f746efa5a1ceaf3ba0276, type: 3}
     m_FontSize: 10
     m_FontStyle: 1
     m_BestFit: 0
@@ -8130,6 +8130,10 @@ PrefabInstance:
       propertyPath: gunShot
       value: 
       objectReference: {fileID: 1197798071}
+    - target: {fileID: 779580442, guid: 6f1a7354265853f44b0ed5e2e43676ad, type: 3}
+      propertyPath: muzzleFlash
+      value: 
+      objectReference: {fileID: 1359926962}
     - target: {fileID: 1694449805434718, guid: 6f1a7354265853f44b0ed5e2e43676ad, type: 3}
       propertyPath: m_Name
       value: M1911
@@ -8192,6 +8196,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f1a7354265853f44b0ed5e2e43676ad, type: 3}
+--- !u!198 &1359926962 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1332295482, guid: 6f1a7354265853f44b0ed5e2e43676ad,
+    type: 3}
+  m_PrefabInstance: {fileID: 1359926961}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1360143435
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9292,10 +9302,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1546866964}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c7996fc41dd482478c87b71349c439b, type: 3}
+  m_Script: {fileID: 11500000, guid: 388a983b4d1727e4f8915ff148a9c881, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunBarrelTransform: {fileID: 0}
+  CameraFacing: {fileID: 656598669}
 --- !u!23 &1546866967
 MeshRenderer:
   m_ObjectHideFlags: 0

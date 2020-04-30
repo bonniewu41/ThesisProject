@@ -168,7 +168,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
     Android: com.oculus.SampleFramework
-    Standalone: unity.Oculus.Oculus Sample Framework
+    Standalone: unity.Oculus.OculusSampleFramework
     Tizen: com.oculus.SampleFramework
     iPhone: com.oculus.SampleFramework
     tvOS: com.oculus.SampleFramework
@@ -338,6 +338,7 @@ PlayerSettings:
     m_Enabled: 1
     m_Devices:
     - Oculus
+    - OpenVR
   - m_BuildTarget: Tizen
     m_Enabled: 0
     m_Devices: []
@@ -625,7 +626,8 @@ PlayerSettings:
   scriptingRuntimeVersion: 1
   gcIncremental: 0
   gcWBarrierValidation: 0
-  apiCompatibilityLevelPerPlatform: {}
+  apiCompatibilityLevelPerPlatform:
+    Standalone: 3
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   metroPackageName: test3

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GunFire : MonoBehaviour
+public class XboxGunFire : MonoBehaviour
 {
 
     public Camera fpsCam;
@@ -11,22 +11,21 @@ public class GunFire : MonoBehaviour
 
     PlayerControls controls;
 
-    //void Awake()
-    //{
-    //    controls = new PlayerControls();
+    void Awake()
+    {
+        controls = new PlayerControls();
+        controls.Gameplay.Shoot.performed += context => Shoot();
+    }
 
-    //    controls.Gameplay.Shoot.performed += context => Shoot();
-    //}
+    private void OnEnable()
+    {
+        controls.Enable();
+    }
 
-    //private void OnEnable()
-    //{
-    //    controls.Enable();
-    //}
-
-    //private void OnDisable()
-    //{
-    //    controls.Disable();
-    //}
+    private void OnDisable()
+    {
+        controls.Disable();
+    }
 
 
     void Update()
