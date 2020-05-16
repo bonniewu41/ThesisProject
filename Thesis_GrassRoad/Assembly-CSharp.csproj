@@ -58,10 +58,12 @@
      <Compile Include="Assets\GrassRoadRace\PlayerControls.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\CameraMove.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\CrossHair.cs" />
+     <Compile Include="Assets\GrassRoadRace\Script\DelayedStart.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\EnterArea.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\GameControl.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\HeadCameraMove.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\HeadGunFire.cs" />
+     <Compile Include="Assets\GrassRoadRace\Script\HideMainMenu.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\HitObstacle.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\MenuSystem\MenuManager.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\MenuSystem\Panel.cs" />
@@ -75,6 +77,7 @@
      <Compile Include="Assets\GrassRoadRace\Script\PointerScripts\PointerEvents.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\PointerScripts\VRInput.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\ScoringSystem.cs" />
+     <Compile Include="Assets\GrassRoadRace\Script\ShowMainMenu.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\SpawnTargets.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\Target.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\Timer.cs" />

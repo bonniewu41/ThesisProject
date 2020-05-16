@@ -24,6 +24,45 @@ public class MenuManager : MonoBehaviour
         currentPanel.Show();
     }
 
+    private void Update()
+    {
+        if (OVRInput.GetDown(OVRInput.Button.Two))
+            GoToPrevious();
+    }
+
+    public void GoToPrevious()
+    {
+        if(panelHistory.Count == 0)
+        {
+            OVRManager.PlatformUIConfirmQuit();
+            return;
+        }
+
+        int lastIndex = panelHistory.Count - 1;
+        SetCurrent(panelHistory[lastIndex]);
+        panelHistory.RemoveAt(lastIndex);
+    }
+
+    public void SetCurrentWithHistory(Panel newPanel)
+    {
+        panelHistory.Add(currentPanel);
+        SetCurrent(newPanel);
+    }
+
+    private void SetCurrent(Panel newPanel)
+    {
+        currentPanel.Hide();
+        currentPanel = newPanel;
+        currentPanel.Show();
+    }
+
+
+
+
+
+
+
+
     //public void PlayGame ()
     //{
     //    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);

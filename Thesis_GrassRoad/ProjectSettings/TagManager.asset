@@ -12,6 +12,8 @@ TagManager:
   - dontmove
   - listlast
   - target
+  - PanelMain
+  - PanelOptions
   layers:
   - Default
   - TransparentFX
