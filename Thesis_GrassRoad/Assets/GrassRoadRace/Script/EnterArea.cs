@@ -11,7 +11,6 @@ public class EnterArea : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-
         SpawnTargets.spawnXCount = 0;
         SpawnTargets.spawnZCount = 0;
 

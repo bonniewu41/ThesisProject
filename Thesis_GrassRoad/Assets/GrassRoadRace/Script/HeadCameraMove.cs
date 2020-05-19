@@ -9,15 +9,16 @@ public class HeadCameraMove : MonoBehaviour
     public float pitch;
     public float mouseSensitivity = 1f;
 
-    //public static float moveSpeed = 1.8f;
-    public static float moveSpeed = 0f;
+    public static float moveSpeed = 1.8f;
+    //public static float moveSpeed = 0f;
 
     public static Rigidbody camRb;
     public Vector3 camMovement;
     public Camera charCam; 
 
-    public AudioSource hitHurdleSound;
     public GameControl gameControl;
+
+    private bool isColliding = false;
     /* ================================================ */
 
     void Start()
@@ -44,27 +45,28 @@ public class HeadCameraMove : MonoBehaviour
        NOTE: Player will need to turn their gaze direction by themselves. */
     void GetTurn(int trigger)
     {
+        float tilt_angle = charCam.transform.localEulerAngles.z;
         float zRotationOrg = charCam.transform.localEulerAngles.z;
-        //Debug.Log("original: " + zRotationOrg);
 
         // convert angle for calculation
-        float tilt_angle = 0;
-
         if (zRotationOrg < 6 | zRotationOrg > 354)
         {
             tilt_angle = 0;
-        } 
-        else if (zRotationOrg > 270) 
-        {
-            tilt_angle = (tilt_angle - 270)/90f;
-        } 
-        else 
-        {
-            tilt_angle = tilt_angle / 90f;
         }
-        // use tilt_ angle [-1, 1]
+        else if (zRotationOrg > 270)
+        {
+            //tilt_angle = (tilt_angle - 360) / 90f;
+            tilt_angle = 0.5f;
+        }
+        else
+        {
+            //tilt_angle = tilt_angle / 90f;
+            tilt_angle = -0.5f;
+        }
 
-        Debug.Log("angle: " + tilt_angle);
+        //Debug.Log("original: " + zRotationOrg + "angle: " + tilt_angle);
+
+
 
         if (trigger > 6) // end case
         {
@@ -81,7 +83,24 @@ public class HeadCameraMove : MonoBehaviour
         }
         else
         {
+            if (isColliding)
+            {
+                tilt_angle *= -0.5f;
+            }
             camMovement = new Vector3(tilt_angle, 0, moveSpeed);
+        }
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.name == "Fence")
+        {
+            Debug.Log("collides");
+            isColliding = true;
+        } else
+        {
+            Debug.Log("not collides");
+            isColliding = false;
         }
     }
 

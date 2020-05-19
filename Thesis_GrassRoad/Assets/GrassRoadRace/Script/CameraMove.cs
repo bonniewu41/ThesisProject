@@ -19,7 +19,7 @@ public class CameraMove : MonoBehaviour
     public static Rigidbody camRb;
     public Vector3 camMovement;
 
-    public AudioSource hitHurdleSound;
+    //public AudioSource hitHurdleSound;
     public GameControl gameControl;
 
     PlayerControls controls;

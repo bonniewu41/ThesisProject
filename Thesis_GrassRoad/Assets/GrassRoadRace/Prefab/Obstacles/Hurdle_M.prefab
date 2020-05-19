@@ -105,7 +105,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 492d66e29f3ce4693bebf4b34b3a145a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitHurdleSound: {fileID: 0}
+  hitHurdleSound: {fileID: 8141548057673106562, guid: fa1429e50d159ec4182ae77547207f87,
+    type: 3}
 --- !u!1 &8032134129108260497
 GameObject:
   m_ObjectHideFlags: 0
