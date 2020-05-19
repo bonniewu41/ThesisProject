@@ -44,9 +44,27 @@ public class HeadCameraMove : MonoBehaviour
        NOTE: Player will need to turn their gaze direction by themselves. */
     void GetTurn(int trigger)
     {
-        float zRotation = charCam.transform.localEulerAngles.z % 360;
         float zRotationOrg = charCam.transform.localEulerAngles.z;
-        Debug.Log("original: " + zRotationOrg + "; modified: " + zRotation);
+        //Debug.Log("original: " + zRotationOrg);
+
+        // convert angle for calculation
+        float tilt_angle = 0;
+
+        if (zRotationOrg < 6 | zRotationOrg > 354)
+        {
+            tilt_angle = 0;
+        } 
+        else if (zRotationOrg > 270) 
+        {
+            tilt_angle = (tilt_angle - 270)/90f;
+        } 
+        else 
+        {
+            tilt_angle = tilt_angle / 90f;
+        }
+        // use tilt_ angle [-1, 1]
+
+        Debug.Log("angle: " + tilt_angle);
 
         if (trigger > 6) // end case
         {
@@ -63,7 +81,7 @@ public class HeadCameraMove : MonoBehaviour
         }
         else
         {
-            camMovement = new Vector3(Input.GetAxis("Horizontal"), 0, moveSpeed);
+            camMovement = new Vector3(tilt_angle, 0, moveSpeed);
         }
     }
 

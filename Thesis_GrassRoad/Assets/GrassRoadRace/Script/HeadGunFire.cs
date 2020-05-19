@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GunInputHead : MonoBehaviour
+public class HeadGunFire : MonoBehaviour
 {
 
     public Camera fpsCam;

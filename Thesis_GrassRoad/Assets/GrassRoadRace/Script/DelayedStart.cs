@@ -7,7 +7,6 @@ public class DelayedStart : MonoBehaviour
     public GameObject countDown;
     public AudioSource countDownSound;
 
-    // Start is called before the first frame update
     void Start()
     {
         StartCoroutine("StartDelay");
