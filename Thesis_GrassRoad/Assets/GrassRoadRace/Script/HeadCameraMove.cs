@@ -9,7 +9,7 @@ public class HeadCameraMove : MonoBehaviour
     public float pitch;
     public float mouseSensitivity = 1f;
 
-    public static float moveSpeed = 1.8f;
+    public static float moveSpeed = 1.9f;
     //public static float moveSpeed = 0f;
 
     public static Rigidbody camRb;
@@ -55,42 +55,56 @@ public class HeadCameraMove : MonoBehaviour
         }
         else if (zRotationOrg > 270)
         {
-            //tilt_angle = (tilt_angle - 360) / 90f;
             tilt_angle = 0.5f;
         }
         else
         {
-            //tilt_angle = tilt_angle / 90f;
             tilt_angle = -0.5f;
         }
 
-        //Debug.Log("original: " + zRotationOrg + "angle: " + tilt_angle);
 
-
-
+        // sets different moving direction for different path
         if (trigger > 6) // end case
         {
+            if (isColliding)
+            {
+                tilt_angle *= -0.5f;
+                isColliding = false;
+            }
             camMovement = new Vector3(0, 0, 0);
             gameControl.GetComponent<GameControl>().endGame(); // end the game when reaches ending obstacle
         }
         else if (trigger == 4) // negative case
         {
-            camMovement = new Vector3((-1) * (Input.GetAxis("Horizontal")), 0, -moveSpeed);
+            if (isColliding)
+            {
+                tilt_angle *= -0.5f;
+                isColliding = false;
+            }
+            camMovement = new Vector3((-1) * tilt_angle, 0, -moveSpeed);
         }
         else if ((trigger % 2) == 1) // moving -x
         {
-            camMovement = new Vector3(-moveSpeed, 0, Input.GetAxis("Horizontal"));
+            if (isColliding)
+            {
+                tilt_angle *= -0.5f;
+                isColliding = false;
+            }
+            camMovement = new Vector3(-moveSpeed, 0, tilt_angle);
         }
         else
         {
             if (isColliding)
             {
                 tilt_angle *= -0.5f;
+                isColliding = false;
             }
             camMovement = new Vector3(tilt_angle, 0, moveSpeed);
         }
     }
 
+
+    /* check is character hits the fence */
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.name == "Fence")

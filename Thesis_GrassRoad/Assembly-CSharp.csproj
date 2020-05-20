@@ -68,8 +68,10 @@
      <Compile Include="Assets\GrassRoadRace\Script\MenuSystem\MenuManager.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\MenuSystem\Panel.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\MenuSystem\SceneChanger.cs" />
+     <Compile Include="Assets\GrassRoadRace\Script\NaturalCameraMove.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\NaturalCrossHair.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\NaturalGunFire.cs" />
+     <Compile Include="Assets\GrassRoadRace\Script\NegatePositionTracking.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\NegateTracking.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\PathManager.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\PointerScripts\CanvasPointer.cs" />

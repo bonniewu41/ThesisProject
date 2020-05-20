@@ -123,7 +123,7 @@ public class CameraMove : MonoBehaviour
     }
 
 
-    /* rotation based on mouse */
+    /* rotation using xBox joystick */
     void DoCamRotation()
     {
         //yaw += mouseSensitivity * Input.GetAxis("Mouse X");
