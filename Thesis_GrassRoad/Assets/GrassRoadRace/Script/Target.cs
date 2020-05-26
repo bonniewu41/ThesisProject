@@ -8,11 +8,11 @@ public class Target : MonoBehaviour
 {
 
     public AudioSource collectSound;
-    public int rotateSpeed;
+    public float rotateSpeed;
 
     private void Start()
     {
-        rotateSpeed = 1;
+        rotateSpeed = 0.5f;
     }
 
     void Update()
