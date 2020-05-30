@@ -117,7 +117,7 @@ public class SpawnTargets : MonoBehaviour
         for (int i = 0; i < maxTarget; i++)
         {
             xPos = firstTargetGroup[i] - (184 * (EnterArea.trigger_count / 2));
-            yPos = Random.Range(3, 6);
+            yPos = Random.Range(4, 7);
 
             if (EnterArea.trigger_count == 4)
             {
@@ -155,7 +155,7 @@ public class SpawnTargets : MonoBehaviour
         for (int i = 0; i < maxTarget; i++)
         {
             xPos = (int)(characterPosX - Random.Range(13, 18));
-            yPos = Random.Range(3, 6);
+            yPos = Random.Range(4, 7);
 
             if (EnterArea.trigger_count == 3)
             {
@@ -184,7 +184,7 @@ public class SpawnTargets : MonoBehaviour
         for (int i = 0; i < maxTarget; i++)
         {
             xPos = firstTargetGroup[i];
-            yPos = Random.Range(3, 6);
+            yPos = Random.Range(4, 7);
             zPos = (int)(characterPosZ + Random.Range(9, 14));
             _targetClone = Instantiate(targetPrefab, new Vector3(xPos, yPos, zPos), Quaternion.Euler(90, 0, 0));
 

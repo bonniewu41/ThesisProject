@@ -51,47 +51,68 @@ public class NaturalCameraMove : MonoBehaviour
        NOTE: Player will need to turn their gaze direction by themselves. */
     void GetTurn(int trigger)
     {
-        float tilt_angle = charCam.transform.localEulerAngles.z;
-        float zRotationOrg = charCam.transform.localEulerAngles.z;
-        float currPosition = charCam.transform.localPosition.x;
+        float currPositionX = charCam.transform.localPosition.x;
+        float currPositionZ = charCam.transform.localPosition.z;
         float stepPosition = 0;
 
+        //float travel_dif = Mathf.Abs(prevPosition - currPosition);
+        ////Debug.Log("local: " + currPosition + ", travel_fif: " + travel_dif);
 
-        float travel_dif = Mathf.Abs(prevPosition - currPosition);
-        //Debug.Log("local: " + currPosition + ", travel_fif: " + travel_dif);
-
-        if (travel_dif > 0.1) {
-            if(prevPosition < currPosition) {
-                stepPosition = 0.8f; // move right
-            } else { 
-                stepPosition = -0.8f; // move left
-            }
-        } else {
-            stepPosition = 0;
-        }
+        //if (travel_dif > 0.1) {
+        //    if(0.2 < currPosition) {
+        //        stepPosition = 0.8f; // move right
+        //    }
+        //    else if (currPosition < -0.2) {
+        //        stepPosition = -0.8f; // move left
+        //    }
+        //} else {
+        //    stepPosition = 0;
+        //}
 
 
         if (trigger > 6) // end case
         {
+            stepPosition = _get_step(currPositionX);
             camMovement = new Vector3(0, 0, 0);
             gameControl.GetComponent<GameControl>().endGame(); // end the game when reaches ending obstacle
         }
         else if (trigger == 4) // negative case
         {
-            camMovement = new Vector3((-1) * (Input.GetAxis("Horizontal")), 0, -moveSpeed);
+            stepPosition = _get_step(currPositionX) * -1;
+            camMovement = new Vector3((-1) * stepPosition, 0, -moveSpeed);
         }
         else if ((trigger % 2) == 1) // moving -x
         {
-            camMovement = new Vector3(-moveSpeed, 0, Input.GetAxis("Horizontal"));
+            stepPosition = _get_step(currPositionZ);
+            camMovement = new Vector3(-moveSpeed, 0, stepPosition);
         }
         else
         {
-            if (isColliding)
-            {
-                stepPosition *= -0.3f;
-            }
+            stepPosition = _get_step(currPositionX);
             camMovement = new Vector3(stepPosition, 0, moveSpeed);
         }
+    }
+
+
+    float _get_step (float position)
+    {
+        float step = 0f;
+
+        if (0.2 < position)
+        {
+            step = 0.8f; // move right
+        }
+        else if (position < -0.2)
+        {
+            step = -0.8f; // move left
+        }
+
+        if (isColliding)
+        {
+            step *= -0.3f;
+        }
+
+        return step;
     }
 
 

@@ -48,59 +48,54 @@ public class HeadCameraMove : MonoBehaviour
         float tilt_angle = charCam.transform.localEulerAngles.z;
         float zRotationOrg = charCam.transform.localEulerAngles.z;
 
-        // convert angle for calculation
-        if (zRotationOrg < 6 | zRotationOrg > 354)
-        {
-            tilt_angle = 0;
-        }
-        else if (zRotationOrg > 270)
-        {
-            tilt_angle = 0.5f;
-        }
-        else
-        {
-            tilt_angle = -0.5f;
-        }
-
-
         // sets different moving direction for different path
         if (trigger > 6) // end case
         {
-            if (isColliding)
-            {
-                tilt_angle *= -0.5f;
-                isColliding = false;
-            }
+            tilt_angle = _get_tilt_angle(zRotationOrg);
             camMovement = new Vector3(0, 0, 0);
             gameControl.GetComponent<GameControl>().endGame(); // end the game when reaches ending obstacle
         }
         else if (trigger == 4) // negative case
         {
-            if (isColliding)
-            {
-                tilt_angle *= -0.5f;
-                isColliding = false;
-            }
+            tilt_angle = _get_tilt_angle(zRotationOrg);
             camMovement = new Vector3((-1) * tilt_angle, 0, -moveSpeed);
         }
         else if ((trigger % 2) == 1) // moving -x
         {
-            if (isColliding)
-            {
-                tilt_angle *= -0.5f;
-                isColliding = false;
-            }
+            tilt_angle = _get_tilt_angle(zRotationOrg);
             camMovement = new Vector3(-moveSpeed, 0, tilt_angle);
         }
         else
         {
-            if (isColliding)
-            {
-                tilt_angle *= -0.5f;
-                isColliding = false;
-            }
+            tilt_angle = _get_tilt_angle(zRotationOrg);
             camMovement = new Vector3(tilt_angle, 0, moveSpeed);
         }
+    }
+
+    float _get_tilt_angle(float RotatedAngle)
+    {
+        float angle = 0;
+
+        if (RotatedAngle < 6 | RotatedAngle > 354)
+        {
+            angle = 0;
+        }
+        else if (RotatedAngle > 270)
+        {
+            angle = 0.5f;
+        }
+        else
+        {
+            angle = -0.5f;
+        }
+
+        if (isColliding)
+        {
+            angle *= -0.5f;
+            isColliding = false;
+        }
+
+        return angle;
     }
 
 
