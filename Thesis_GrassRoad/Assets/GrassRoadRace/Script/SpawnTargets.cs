@@ -117,7 +117,7 @@ public class SpawnTargets : MonoBehaviour
         for (int i = 0; i < maxTarget; i++)
         {
             xPos = firstTargetGroup[i] - (184 * (EnterArea.trigger_count / 2));
-            yPos = Random.Range(4, 7);
+            yPos = Random.Range(5, 8);
 
             if (EnterArea.trigger_count == 4)
             {
@@ -155,7 +155,7 @@ public class SpawnTargets : MonoBehaviour
         for (int i = 0; i < maxTarget; i++)
         {
             xPos = (int)(characterPosX - Random.Range(13, 18));
-            yPos = Random.Range(4, 7);
+            yPos = Random.Range(5, 8);
 
             if (EnterArea.trigger_count == 3)
             {
@@ -184,7 +184,7 @@ public class SpawnTargets : MonoBehaviour
         for (int i = 0; i < maxTarget; i++)
         {
             xPos = firstTargetGroup[i];
-            yPos = Random.Range(4, 7);
+            yPos = Random.Range(5, 8);
             zPos = (int)(characterPosZ + Random.Range(9, 14));
             _targetClone = Instantiate(targetPrefab, new Vector3(xPos, yPos, zPos), Quaternion.Euler(90, 0, 0));
 
@@ -224,10 +224,10 @@ public class SpawnTargets : MonoBehaviour
         // chooses left section numbers
         for (int i = 0; i < left_num; i++)
         {
-            cur_left = Random.Range(-10, -3);
+            cur_left = Random.Range(-7, -2);
             while (firstTargetGroup.Contains(cur_left))
             {
-                cur_left = Random.Range(-10, -3);
+                cur_left = Random.Range(-7, -2);
             }
             firstTargetGroup.Add(cur_left);
         }
@@ -235,11 +235,11 @@ public class SpawnTargets : MonoBehaviour
         // chooses middle section numbers
         for (int i = left_num; i < left_num + mid_num; i++)
         {
-            cur_middle = Random.Range(-3, 4);
+            cur_middle = Random.Range(-2, 3);
 
             while (firstTargetGroup.Contains(cur_middle))
             {
-                cur_middle = Random.Range(-3, 4);
+                cur_middle = Random.Range(-2, 3);
             }
             firstTargetGroup.Add(cur_middle);
         }
@@ -247,10 +247,10 @@ public class SpawnTargets : MonoBehaviour
         // chooses right section numbers
         for (int i = left_num + mid_num; i < 10; i++)
         {
-            cur_right = Random.Range(4, 11);
+            cur_right = Random.Range(3, 7);
             while (firstTargetGroup.Contains(cur_right))
             {
-                cur_right = Random.Range(4, 11);
+                cur_right = Random.Range(3, 7);
             }
             firstTargetGroup.Add(cur_right);
         }
