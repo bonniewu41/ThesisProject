@@ -1188,7 +1188,7 @@ MonoBehaviour:
   xPos: 0
   yPos: 0
   zPos: 0
-  maxTarget: 10
+  maxTarget: 7
   addedDistance: 4
 --- !u!1 &911425550
 GameObject:

@@ -13,7 +13,7 @@ public class SpawnTargets : MonoBehaviour
     public int yPos;
     public int zPos;
 
-    public int maxTarget = 10;
+   
     public int addedDistance = 4; // This adjusts how far targets should be located from the current character position
 
     public static int spawnZCount = 0;
@@ -22,6 +22,7 @@ public class SpawnTargets : MonoBehaviour
 
 
     /* =============== Private variables =============== */
+    private int maxTarget = 7;
     private GameObject _targetClone;
     private float characterPosZ;
     private float characterPosX;
@@ -117,7 +118,7 @@ public class SpawnTargets : MonoBehaviour
         for (int i = 0; i < maxTarget; i++)
         {
             xPos = firstTargetGroup[i] - (184 * (EnterArea.trigger_count / 2));
-            yPos = Random.Range(5, 8);
+            yPos = Random.Range(5, 7);
 
             if (EnterArea.trigger_count == 4)
             {
@@ -155,7 +156,7 @@ public class SpawnTargets : MonoBehaviour
         for (int i = 0; i < maxTarget; i++)
         {
             xPos = (int)(characterPosX - Random.Range(13, 18));
-            yPos = Random.Range(5, 8);
+            yPos = Random.Range(5, 7);
 
             if (EnterArea.trigger_count == 3)
             {
@@ -184,7 +185,7 @@ public class SpawnTargets : MonoBehaviour
         for (int i = 0; i < maxTarget; i++)
         {
             xPos = firstTargetGroup[i];
-            yPos = Random.Range(5, 8);
+            yPos = Random.Range(5, 7);
             zPos = (int)(characterPosZ + Random.Range(9, 14));
             _targetClone = Instantiate(targetPrefab, new Vector3(xPos, yPos, zPos), Quaternion.Euler(90, 0, 0));
 
@@ -196,7 +197,7 @@ public class SpawnTargets : MonoBehaviour
 
     void DeleteTarget()
     {
-        for (int i = 9; i >= 0; --i)
+        for (int i = maxTarget - 1; i >= 0; --i)
         {
             Destroy(activeTargets[i], 6.5f);
             activeTargets.RemoveAt(i);
@@ -212,11 +213,20 @@ public class SpawnTargets : MonoBehaviour
         int cur_middle;
         int cur_right;
 
-        int left_num = Random.Range(3, 6);
+        // targets = 10
+        //int left_num = Random.Range(3, 6);
+        //int mid_num = Random.Range(1, 3);
+        //if (left_num == 3)
+        //{
+        //    mid_num = 2;
+        //}
+
+        // targets = 7
+        int left_num = Random.Range(2, 5);
         int mid_num = Random.Range(1, 3);
-        if (left_num == 3)
+        if (left_num == 4)
         {
-            mid_num = 2;
+            mid_num = 1;
         }
 
         List<int> firstTargetGroup = new List<int>();
@@ -224,6 +234,7 @@ public class SpawnTargets : MonoBehaviour
         // chooses left section numbers
         for (int i = 0; i < left_num; i++)
         {
+            // -10, -3
             cur_left = Random.Range(-7, -2);
             while (firstTargetGroup.Contains(cur_left))
             {
@@ -235,6 +246,7 @@ public class SpawnTargets : MonoBehaviour
         // chooses middle section numbers
         for (int i = left_num; i < left_num + mid_num; i++)
         {
+            // -3, 4
             cur_middle = Random.Range(-2, 3);
 
             while (firstTargetGroup.Contains(cur_middle))
@@ -245,12 +257,13 @@ public class SpawnTargets : MonoBehaviour
         }
 
         // chooses right section numbers
-        for (int i = left_num + mid_num; i < 10; i++)
+        for (int i = left_num + mid_num; i < 7; i++)
         {
-            cur_right = Random.Range(3, 7);
+            // 4, 11
+            cur_right = Random.Range(3, 8);
             while (firstTargetGroup.Contains(cur_right))
             {
-                cur_right = Random.Range(3, 7);
+                cur_right = Random.Range(3, 8);
             }
             firstTargetGroup.Add(cur_right);
         }
