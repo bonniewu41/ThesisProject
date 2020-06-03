@@ -34,7 +34,6 @@ public class NaturalGunFire : MonoBehaviour
             Target target = hit.transform.GetComponent<Target>();
             if (target != null)
             {
-                Debug.Log("hit target");
                 target.TakeDamage();
             }
 

@@ -199,7 +199,7 @@ public class SpawnTargets : MonoBehaviour
     {
         for (int i = maxTarget - 1; i >= 0; --i)
         {
-            Destroy(activeTargets[i], 6.5f);
+            Destroy(activeTargets[i], 7f);
             activeTargets.RemoveAt(i);
         }
     }
@@ -257,7 +257,7 @@ public class SpawnTargets : MonoBehaviour
         }
 
         // chooses right section numbers
-        for (int i = left_num + mid_num; i < 7; i++)
+        for (int i = left_num + mid_num; i < maxTarget; i++)
         {
             // 4, 11
             cur_right = Random.Range(3, 8);

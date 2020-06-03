@@ -22,7 +22,7 @@ public class NaturalCrossHair : MonoBehaviour
         }
         else
         {
-           distance = gunBarrelTransform.position.z * 10;
+           distance = 950;
         }
 
         transform.position = gunBarrelTransform.transform.position + gunBarrelTransform.transform.rotation * Vector3.forward * distance;

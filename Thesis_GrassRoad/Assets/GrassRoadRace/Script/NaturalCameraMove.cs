@@ -13,7 +13,7 @@ public class NaturalCameraMove : MonoBehaviour
     public float pitch;
     public float mouseSensitivity = 1f;
 
-    public static float moveSpeed = 1.8f;
+    public static float moveSpeed = 1.9f;
     //public static float moveSpeed = 0f;
 
     public static Rigidbody camRb;
@@ -69,6 +69,9 @@ public class NaturalCameraMove : MonoBehaviour
         //    stepPosition = 0;
         //}
 
+        /*
+            if currPositionX < 
+        */
 
         if (trigger > 6) // end case
         {
@@ -78,8 +81,8 @@ public class NaturalCameraMove : MonoBehaviour
         }
         else if (trigger == 4) // negative case
         {
-            stepPosition = _get_step(currPositionX) * -1;
-            camMovement = new Vector3((-1) * stepPosition, 0, -moveSpeed);
+            stepPosition = _get_step(currPositionX);
+            camMovement = new Vector3(stepPosition, 0, -moveSpeed);
         }
         else if ((trigger % 2) == 1) // moving -x
         {
@@ -109,7 +112,7 @@ public class NaturalCameraMove : MonoBehaviour
 
         if (isColliding)
         {
-            step *= -0.3f;
+            step *= -0.2f;
         }
 
         return step;
@@ -120,12 +123,12 @@ public class NaturalCameraMove : MonoBehaviour
     {
         if (collision.gameObject.name == "Fence")
         {
-            Debug.Log("collides");
+            // Debug.Log("collides");
             isColliding = true;
         }
         else
         {
-            Debug.Log("not collides");
+            // Debug.Log("not collides");
             isColliding = false;
         }
     }

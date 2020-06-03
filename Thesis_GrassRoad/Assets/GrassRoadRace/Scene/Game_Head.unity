@@ -303,6 +303,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2610864091427925866, guid: 45657debb1637e945815862c4206ce64,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4527567253547710249, guid: 45657debb1637e945815862c4206ce64,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1188,7 +1193,6 @@ MonoBehaviour:
   xPos: 0
   yPos: 0
   zPos: 0
-  maxTarget: 7
   addedDistance: 4
 --- !u!1 &911425550
 GameObject:
