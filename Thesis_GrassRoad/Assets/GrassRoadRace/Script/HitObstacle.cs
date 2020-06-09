@@ -16,7 +16,7 @@ public class HitObstacle : MonoBehaviour
             hitHurdleSound.Play();
             ScoringSystem.scoreValue -= 10;
             characterHitPos = collision.gameObject.transform.position;
-            CameraMove.Penalty(characterHitPos, EnterArea.trigger_count); //calls the penalty function in CameraMove to modify the character position
+            HeadCameraMove.Penalty(characterHitPos, EnterArea.trigger_count); //calls the penalty function in CameraMove to modify the character position
         }
     }
 }

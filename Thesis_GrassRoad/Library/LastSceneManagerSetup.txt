@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/GrassRoadRace/Scene/Game_Xbox.unity
+- path: Assets/GrassRoadRace/Scene/Game_Head.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

@@ -13,7 +13,7 @@ public class NaturalCameraMove : MonoBehaviour
     public float pitch;
     public float mouseSensitivity = 1f;
 
-    public static float moveSpeed = 1.9f;
+    public static float moveSpeed = 1.95f;
     //public static float moveSpeed = 0f;
 
     public static Rigidbody camRb;
@@ -35,9 +35,7 @@ public class NaturalCameraMove : MonoBehaviour
 
     void Update()
     {
-        DoCamRotation();
         GetTurn(EnterArea.trigger_count);
-        //UnityEngine.XR.InputTracking.disablePositionalTracking = false;
     }
 
 
@@ -55,23 +53,6 @@ public class NaturalCameraMove : MonoBehaviour
         float currPositionZ = charCam.transform.localPosition.z;
         float stepPosition = 0;
 
-        //float travel_dif = Mathf.Abs(prevPosition - currPosition);
-        ////Debug.Log("local: " + currPosition + ", travel_fif: " + travel_dif);
-
-        //if (travel_dif > 0.1) {
-        //    if(0.2 < currPosition) {
-        //        stepPosition = 0.8f; // move right
-        //    }
-        //    else if (currPosition < -0.2) {
-        //        stepPosition = -0.8f; // move left
-        //    }
-        //} else {
-        //    stepPosition = 0;
-        //}
-
-        /*
-            if currPositionX < 
-        */
 
         if (trigger > 6) // end case
         {
@@ -113,12 +94,13 @@ public class NaturalCameraMove : MonoBehaviour
         if (isColliding)
         {
             step *= -0.2f;
+            isColliding = false;
         }
 
         return step;
     }
 
-
+    /* check if character hits the fence */
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.name == "Fence")
@@ -132,7 +114,6 @@ public class NaturalCameraMove : MonoBehaviour
             isColliding = false;
         }
     }
-
 
 
     void SideMvmt(Vector3 direction)
@@ -161,69 +142,5 @@ public class NaturalCameraMove : MonoBehaviour
         camRb.position = camRewind;
     }
 
-
-    /* rotation based on mouse */
-    void DoCamRotation()
-    {
-        //yaw += mouseSensitivity * Input.GetAxis("Mouse X");
-        //pitch -= mouseSensitivity * Input.GetAxis("Mouse Y");
-        //yaw += mouseSensitivity * gazeDirection.x;
-        //pitch -= mouseSensitivity * gazeDirection.y;
-        //Rotate(pitch, yaw, EnterArea.trigger_count);
-    }
-
-
-    /* Constrain rotation angle on y-axis to allow only 180deg each case*/
-    void Rotate(float deltaX, float deltaY, int trigger)
-    {
-        Vector3 angles = transform.localRotation.eulerAngles;
-        angles.x = deltaX;
-        angles.y = deltaY;
-
-        if (trigger == 4) // negative case
-        { // [-270deg to -90deg]
-            if (angles.y > -90f && angles.y < 90f || angles.y < -270f && angles.y > -450f)
-            {
-                if (deltaY > -180) angles.y = -90f;
-                else angles.y = -270f;
-            }
-        }
-        else if ((trigger % 2) == 1) // moving -x
-        { // [-180deg to 0deg]
-            if (angles.y > 0f && angles.y < 180f || angles.y < -180f && angles.y > -360f)
-            { 
-                if (deltaY > -90) angles.y = 0f;
-                else angles.y = -180f;
-            }
-        }
-        else // moving z (first and third)
-        { // [-90deg to 90deg]
-            if (angles.y > 90f && angles.y < 270f || angles.y < -90f && angles.y > -270f)
-            {
-                if (deltaY > 0) angles.y = 90f;
-                else angles.y = -90f;
-            }
-        }
-
-        if (angles.x > 90f && angles.x < 270f)
-        {
-            if (deltaX > 0) angles.x = 90f;
-            else angles.x = 270f;
-        }
-
-        this.transform.localRotation = Quaternion.Euler(angles.x, angles.y, 0.0f);
-    }
-
-
-    
-
 }
 
-
-
-//void CamRotation()
-//{
-//    yaw += mouseSensitivity * Input.GetAxis("Mouse X");
-//    pitch -= mouseSensitivity * Input.GetAxis("Mouse Y");
-//    this.transform.localRotation = Quaternion.Euler(pitch, yaw, 0.0f); // (x-axis, y-axis, z-axis)
-//}

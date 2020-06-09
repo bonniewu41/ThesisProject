@@ -9,7 +9,7 @@ public class HeadCameraMove : MonoBehaviour
     public float pitch;
     public float mouseSensitivity = 1f;
 
-    public static float moveSpeed = 1.9f;
+    public static float moveSpeed = 1.95f;
     //public static float moveSpeed = 0f;
 
     public static Rigidbody camRb;
@@ -30,7 +30,6 @@ public class HeadCameraMove : MonoBehaviour
 
     void Update()
     {
-        //DoCamRotation();
         GetTurn(EnterArea.trigger_count);
     }
 
@@ -72,6 +71,7 @@ public class HeadCameraMove : MonoBehaviour
         }
     }
 
+
     float _get_tilt_angle(float RotatedAngle)
     {
         float angle = 0;
@@ -99,16 +99,16 @@ public class HeadCameraMove : MonoBehaviour
     }
 
 
-    /* check is character hits the fence */
+    /* check if character hits the fence */
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.name == "Fence")
         {
-            Debug.Log("collides");
+            // Debug.Log("collides");
             isColliding = true;
         } else
         {
-            Debug.Log("not collides");
+            // Debug.Log("not collides");
             isColliding = false;
         }
     }
@@ -138,59 +138,6 @@ public class HeadCameraMove : MonoBehaviour
         }
 
         camRb.position = camRewind;
-    }
-
-
-    /* rotation based on mouse */
-    void DoCamRotation()
-    {
-        //yaw += mouseSensitivity * Input.GetAxis("Mouse X");
-        //pitch -= mouseSensitivity * Input.GetAxis("Mouse Y");
-        //yaw += mouseSensitivity * gazeDirection.x;
-        //pitch -= mouseSensitivity * gazeDirection.y;
-        //Rotate(pitch, yaw, EnterArea.trigger_count);
-    }
-
-
-    /* Constrain rotation angle on y-axis to allow only 180deg each case*/
-    void Rotate(float deltaX, float deltaY, int trigger)
-    {
-        Vector3 angles = transform.localRotation.eulerAngles;
-        angles.x = deltaX;
-        angles.y = deltaY;
-
-        if (trigger == 4) // negative case
-        { // [-270deg to -90deg]
-            if (angles.y > -90f && angles.y < 90f || angles.y < -270f && angles.y > -450f)
-            {
-                if (deltaY > -180) angles.y = -90f;
-                else angles.y = -270f;
-            }
-        }
-        else if ((trigger % 2) == 1) // moving -x
-        { // [-180deg to 0deg]
-            if (angles.y > 0f && angles.y < 180f || angles.y < -180f && angles.y > -360f)
-            {
-                if (deltaY > -90) angles.y = 0f;
-                else angles.y = -180f;
-            }
-        }
-        else // moving z (first and third)
-        { // [-90deg to 90deg]
-            if (angles.y > 90f && angles.y < 270f || angles.y < -90f && angles.y > -270f)
-            {
-                if (deltaY > 0) angles.y = 90f;
-                else angles.y = -90f;
-            }
-        }
-
-        if (angles.x > 90f && angles.x < 270f)
-        {
-            if (deltaX > 0) angles.x = 90f;
-            else angles.x = 270f;
-        }
-
-        this.transform.localRotation = Quaternion.Euler(angles.x, angles.y, 0.0f);
     }
 
 }
