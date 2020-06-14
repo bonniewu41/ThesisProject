@@ -6,6 +6,7 @@ public class DelayedStart : MonoBehaviour
 {
     public GameObject countDown;
     public AudioSource countDownSound;
+    
 
     void Start()
     {
@@ -22,6 +23,7 @@ public class DelayedStart : MonoBehaviour
             yield return 0;
         }
         countDown.gameObject.SetActive(false);
+        
         Time.timeScale = 1;
     }
 }

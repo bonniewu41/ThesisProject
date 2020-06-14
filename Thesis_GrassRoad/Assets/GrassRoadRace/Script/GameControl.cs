@@ -11,6 +11,8 @@ public class GameControl : MonoBehaviour
 {
 
     /* =============== Private variables =============== */
+    
+
     [SerializeField]
     private GameObject spawnTargets; 
 
@@ -26,7 +28,12 @@ public class GameControl : MonoBehaviour
     [SerializeField]
     private GameObject gameUI; //score, time left, crosshair
 
+    [SerializeField]
+    private AudioSource gameMusic;
+
     private Timer timer;
+    
+
 
     PlayerControls controls;
     /* ================================================ */
@@ -61,6 +68,8 @@ public class GameControl : MonoBehaviour
         //charactercamera.setactive(true);
         //gameui.setactive(true);
         timer.startTimer();
+        gameMusic.Play();
+
         Cursor.lockState = CursorLockMode.Locked;
 
         //sceneCamera.SetActive(true);
