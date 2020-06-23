@@ -58,7 +58,6 @@ public class SpawnTargets : MonoBehaviour
         }
         else if (EnterArea.trigger_count == 4) // case2: moving with -z
         {
-
             if (characterPosZ < spawnZ - 25)
             {
                 //if (spawnZCount < 11)
@@ -69,9 +68,21 @@ public class SpawnTargets : MonoBehaviour
                 
             }
         }
+        else if (EnterArea.trigger_count == 6) // case3: last path
+        {
+            if (characterPosZ > spawnZ - 5)
+            {
+                //if (spawnZCount < 11)
+                //{
+                SpawnTarget_z();
+                DeleteTarget();
+                //}
+
+            }
+        }
         else // case3: moving with z
         {
-            if (characterPosZ > spawnZ) // case3: moving normal
+            if (characterPosZ > spawnZ) // case4: moving normal
             {
                 //if (spawnZCount < 11)
                 //{
@@ -87,9 +98,7 @@ public class SpawnTargets : MonoBehaviour
     void SpawnTarget_z()
     {
         List<int>  TargetGroup = SelectTarget();
-        
-        
-
+         
         for (int i = 0; i < maxTarget; i++)
         {
             xPos = TargetGroup[i] - (183.9f * (EnterArea.trigger_count / 2));
