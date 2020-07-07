@@ -19,5 +19,6 @@ public class NegatePositionTracking : MonoBehaviour
                 -cameraGameObject.transform.localPosition.z);
             transform.localPosition = offset;
         }
+
     }
 }

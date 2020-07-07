@@ -9,7 +9,7 @@ public class HeadCameraMove : MonoBehaviour
     public float pitch;
     public float mouseSensitivity = 1f;
 
-    public static float moveSpeed = 2.3f;
+    public static float moveSpeed = 1.95f;
 
     public static Rigidbody camRb;
     public Vector3 camMovement;

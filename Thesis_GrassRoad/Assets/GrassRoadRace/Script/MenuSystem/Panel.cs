@@ -20,11 +20,13 @@ public class Panel : MonoBehaviour
 
     public void Show()
     {
-        canvas.enabled = true;
+        //canvas.enabled = true;
+        canvas.gameObject.SetActive(true);
     }
 
     public void Hide()
     {
-        canvas.enabled = false;
+        //canvas.enabled = false;
+        canvas.gameObject.SetActive(false);
     }
 }

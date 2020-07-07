@@ -13,7 +13,7 @@ public class NegateTracking : MonoBehaviour
     }
 	
     void Update () {
-        transform.localPosition = startPos - cam.transform.localPosition;
+        //transform.localPosition = startPos - cam.transform.localPosition;
         transform.localRotation = Quaternion.Inverse(cam.transform.localRotation);
     }
 }
