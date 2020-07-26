@@ -65,9 +65,13 @@
      <Compile Include="Assets\GrassRoadRace\Script\HeadGunFire.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\HideMainMenu.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\HitObstacle.cs" />
+     <Compile Include="Assets\GrassRoadRace\Script\MenuSystem\CanvasController.cs" />
+     <Compile Include="Assets\GrassRoadRace\Script\MenuSystem\CanvasManager.cs" />
+     <Compile Include="Assets\GrassRoadRace\Script\MenuSystem\CanvasSwitcher.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\MenuSystem\MenuManager.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\MenuSystem\Panel.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\MenuSystem\SceneChanger.cs" />
+     <Compile Include="Assets\GrassRoadRace\Script\MenuSystem\Singleton.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\NaturalCameraMove.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\NaturalCrossHair.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\NaturalGunFire.cs" />

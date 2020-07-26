@@ -22,6 +22,7 @@ public class MenuManager : MonoBehaviour
             panel.Setup(this);
 
         currentPanel.Show();
+        //currentPanel.gameObject.SetActive(true);
     }
 
     private void Update()
@@ -52,8 +53,11 @@ public class MenuManager : MonoBehaviour
     private void SetCurrent(Panel newPanel)
     {
         currentPanel.Hide();
+        //currentPanel.gameObject.SetActive(false);
         currentPanel = newPanel;
+
         currentPanel.Show();
+        //currentPanel.gameObject.SetActive(true);
     }
 
 

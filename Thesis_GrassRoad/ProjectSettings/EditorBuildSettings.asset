@@ -9,13 +9,13 @@ EditorBuildSettings:
     path: Assets/GrassRoadRace/Scene/Menu.unity
     guid: 1d99df1093e874547b6914dcedf5936c
   - enabled: 1
-    path: Assets/GrassRoadRace/Scene/Game_Xbox.unity
+    path: Assets/GrassRoadRace/Scene/Game1_Xbox.unity
     guid: e323a50016ef3484f9e0d4d42c6bbc2b
   - enabled: 1
-    path: Assets/GrassRoadRace/Scene/Game_Head.unity
+    path: Assets/GrassRoadRace/Scene/Game1_Head.unity
     guid: e9c9f865aff21cd4f80f048d76143e06
   - enabled: 1
-    path: Assets/GrassRoadRace/Scene/Game_Natural.unity
+    path: Assets/GrassRoadRace/Scene/Game1_Natural.unity
     guid: 2a42904133be78f4faf819dd7bf2102f
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 2b6dcedd5d316514b8fee9c93f376804,

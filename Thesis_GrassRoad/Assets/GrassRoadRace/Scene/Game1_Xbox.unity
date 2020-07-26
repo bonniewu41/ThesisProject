@@ -3012,7 +3012,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 656598666}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ac20df6282234e419ee9915e0fd1676, type: 3}
   m_Name: 
@@ -3036,7 +3036,7 @@ MonoBehaviour:
   useVelocity: 1
   velocityStrength: 1
   velocityMin: 0
-  velocityMax: 2
+  velocityMax: 4
   velocitySmoothing: 1
   motionEffectTarget: {fileID: 0}
   useCounterMotion: 0
