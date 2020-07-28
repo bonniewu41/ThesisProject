@@ -5,15 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
-    public void PlayGame(string string_name)
+    public void LoadGame(int buildIndex)
     {
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        //Debug.Log("btn pressed");
-        SceneManager.LoadScene(string_name);
+        SceneManager.LoadScene(buildIndex);
     }
-
-    //public void PlayXbox()
-    //{
-    //    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    //}
 }
