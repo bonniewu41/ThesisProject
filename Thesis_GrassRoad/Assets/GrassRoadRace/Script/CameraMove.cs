@@ -126,8 +126,6 @@ public class CameraMove : MonoBehaviour
     /* rotation using xBox joystick */
     void DoCamRotation()
     {
-        //yaw += mouseSensitivity * Input.GetAxis("Mouse X");
-        //pitch -= mouseSensitivity * Input.GetAxis("Mouse Y");
         yaw += mouseSensitivity * gazeDirection.x;
         pitch -= mouseSensitivity * gazeDirection.y;
         Rotate(pitch, yaw, EnterArea.trigger_count);

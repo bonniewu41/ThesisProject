@@ -9,12 +9,7 @@ public class NaturalCameraMove : MonoBehaviour
 {
 
     /* =============== Public variables =============== */
-    public float yaw;
-    public float pitch;
-    public float mouseSensitivity = 1f;
-
     public static float moveSpeed = 1.95f;
-    //public static float moveSpeed = 0f;
 
     public static Rigidbody camRb;
     public Vector3 camMovement;

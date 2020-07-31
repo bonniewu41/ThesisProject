@@ -7,6 +7,8 @@ public class ScoringSystem : MonoBehaviour
 {
     public GameObject scoreText;
     public static int scoreValue;
+    public static int targetNum;
+    public static int hurdleNum;
 
     void Update()
     {

@@ -2278,11 +2278,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af097ee6cd02c42c2b4603553eb0ee6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnTargets: {fileID: 898932014}
-  sceneCamera: {fileID: 0}
-  characterCamera: {fileID: 0}
-  menuUI: {fileID: 1778016539}
-  gameUI: {fileID: 1468607609}
   gameMusic: {fileID: 8423613216269131786}
 --- !u!1001 &2002701362
 PrefabInstance:

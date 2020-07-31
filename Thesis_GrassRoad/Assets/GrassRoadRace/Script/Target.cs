@@ -24,6 +24,7 @@ public class Target : MonoBehaviour
     public void TakeDamage()
     {
         ScoringSystem.scoreValue += 10;
+        ScoringSystem.targetNum += 1;
         collectSound.Play();
         transform.position = Vector3.one * 9999f; // move the game object off screen while it finishes it's sound, then destroy it
         Destroy(gameObject, 2f);

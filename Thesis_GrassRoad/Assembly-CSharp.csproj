@@ -85,6 +85,11 @@
      <Compile Include="Assets\GrassRoadRace\Script\SpawnTargets2.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\Target.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\Timer.cs" />
+     <Compile Include="Assets\GrassRoadRace\Script\Trial\TrialCameraMove.cs" />
+     <Compile Include="Assets\GrassRoadRace\Script\Trial\TrialHeadCameraMove.cs" />
+     <Compile Include="Assets\GrassRoadRace\Script\Trial\TrialHitObstacle.cs" />
+     <Compile Include="Assets\GrassRoadRace\Script\Trial\TrialNaturalCameraMove.cs" />
+     <Compile Include="Assets\GrassRoadRace\Script\Trial\TrialSpawnTargets.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\XboxGunFire.cs" />
      <Compile Include="Assets\Oculus\AudioManager\Scenes\Scripts\TestScript.cs" />
      <Compile Include="Assets\Oculus\AudioManager\Scripts\Audio\AmbienceEmitter.cs" />
