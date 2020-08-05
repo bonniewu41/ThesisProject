@@ -17,7 +17,7 @@ public class HitObstacle : MonoBehaviour
             ScoringSystem.scoreValue -= 10;
             ScoringSystem.hurdleNum += 1;
             characterHitPos = collision.gameObject.transform.position;
-            Head2CameraMove.Penalty(characterHitPos, EnterArea.trigger_count); //calls the penalty function in CameraMove to modify the character position
+            CombinedCameraMove.Penalty(characterHitPos, EnterArea.trigger_count); //calls the penalty function in CameraMove to modify the character position
         }
     }
 }

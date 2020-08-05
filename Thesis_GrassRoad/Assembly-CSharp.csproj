@@ -58,6 +58,7 @@
      <Compile Include="Assets\GrassRoadRace\PlayerControls.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\CameraMove.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\CameraMove2.cs" />
+     <Compile Include="Assets\GrassRoadRace\Script\CombinedCameraMove.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\CrossHair.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\DelayedStart.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\EnterArea.cs" />

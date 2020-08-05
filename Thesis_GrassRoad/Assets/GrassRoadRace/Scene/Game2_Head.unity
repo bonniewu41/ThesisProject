@@ -695,12 +695,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 572548460}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f30923375c25294fbf45340daaef81f, type: 3}
+  m_Script: {fileID: 11500000, guid: 29fabdd42e0032745846134dff5add96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   camMovement: {x: 0, y: 0, z: 0}
-  charCam: {fileID: 656598669}
   gameControl: {fileID: 1907552560}
+  yaw: 0
+  pitch: 0
+  mouseSensitivity: 1
+  charCam: {fileID: 656598669}
+  prevPosition: 0
 --- !u!54 &572548463
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2201,11 +2205,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af097ee6cd02c42c2b4603553eb0ee6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnTargets: {fileID: 898932014}
-  sceneCamera: {fileID: 0}
-  characterCamera: {fileID: 0}
-  menuUI: {fileID: 1778016539}
-  gameUI: {fileID: 1468607609}
   gameMusic: {fileID: 8423613216269131786}
 --- !u!1001 &2002701362
 PrefabInstance:
