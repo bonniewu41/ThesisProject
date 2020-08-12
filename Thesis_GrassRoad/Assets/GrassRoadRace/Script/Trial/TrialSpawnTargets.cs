@@ -20,8 +20,8 @@ public class TrialSpawnTargets : MonoBehaviour
 
     private int targetSpreadLength = 13; // 13 to 18
     private int targetSpreadHeight = 5; // 5 to 7
-    private int maxTarget = 5;
-    private float pathLength = 15.0f;
+    private int maxTarget = 2;
+    private float pathLength = 18.0f;
     private float spawnZ = 0.0f;
     private float spawnX = 0.0f;
     public static int spawnZCount = 0;
@@ -43,7 +43,7 @@ public class TrialSpawnTargets : MonoBehaviour
 
         if (EnterArea.trigger_count == 1) // case1 : moving with x
         {
-            if (characterPosX > spawnX + 10)
+            if (characterPosX > spawnX + 5)
             {
                 SpawnTarget_x();
                 DeleteTarget();
@@ -76,6 +76,7 @@ public class TrialSpawnTargets : MonoBehaviour
         }
 
         spawnZ += pathLength;
+        spawnZCount++;
     }
 
 
@@ -95,6 +96,7 @@ public class TrialSpawnTargets : MonoBehaviour
         }
 
         spawnX += pathLength;
+        spawnXCount++;
     }
 
 
@@ -112,53 +114,31 @@ public class TrialSpawnTargets : MonoBehaviour
        415, 514, 325, 424, 523 */
     private List<int> SelectTarget()
     {
-        int cur_left;
-        int cur_middle;
-        int cur_right;
+        int cur_num;
+        List<int> TargetSpread = new List<int>();
 
-        // targets = 7
-        int left_num = 2;
-        int mid_num = 1;
-
-        List<int> firstTargetGroup = new List<int>();
-
-        // chooses left section numbers
-        for (int i = 0; i < left_num; i++)
+        for (int i = 0; i < maxTarget; i++)
         {
-            // -10, -3
-            cur_left = Random.Range(-7, -2);
-            while (firstTargetGroup.Contains(cur_left))
+            if (EnterArea.trigger_count == 0 && spawnZCount % 2 == 0 || EnterArea.trigger_count == 1 && spawnXCount % 2 == 0 )
             {
-                cur_left = Random.Range(-7, -2);
-            }
-            firstTargetGroup.Add(cur_left);
+                cur_num = Random.Range(3, 6); // (inclusive, exclusive)
+                while (TargetSpread.Contains(cur_num))
+                {
+                    cur_num = Random.Range(3, 6);
+                }
+                
+            } else 
+            {
+                cur_num = Random.Range(-5, -2);  // (inclusive, exclusive)
+                while (TargetSpread.Contains(cur_num))
+                {
+                    cur_num = Random.Range(-5, -2);
+                }
+            } 
+
+            TargetSpread.Add(cur_num);
         }
 
-        // chooses middle section numbers
-        for (int i = left_num; i < left_num + mid_num; i++)
-        {
-            // -3, 4
-            cur_middle = Random.Range(-2, 3);
-
-            while (firstTargetGroup.Contains(cur_middle))
-            {
-                cur_middle = Random.Range(-2, 3);
-            }
-            firstTargetGroup.Add(cur_middle);
-        }
-
-        // chooses right section numbers
-        for (int i = left_num + mid_num; i < maxTarget; i++)
-        {
-            // 4, 11
-            cur_right = Random.Range(3, 8);
-            while (firstTargetGroup.Contains(cur_right))
-            {
-                cur_right = Random.Range(3, 8);
-            }
-            firstTargetGroup.Add(cur_right);
-        }
-
-        return firstTargetGroup;
+        return TargetSpread;
     }
 }

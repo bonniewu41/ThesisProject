@@ -5,7 +5,7 @@ using UnityEngine;
 public class TrialNaturalCameraMove : MonoBehaviour
 {
     /* =============== Public variables =============== */
-    public static float moveSpeed = 1.95f;
+    public static float moveSpeed = 1.9f;
 
     public static Rigidbody camRb;
     public Vector3 camMovement;

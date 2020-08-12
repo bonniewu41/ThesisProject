@@ -10,7 +10,7 @@ public class CombinedCameraMove : MonoBehaviour
 {
 
     /* =============== Declare variables =============== */
-    public static float moveSpeed = 1.95f;
+    public static float moveSpeed = 1.93f;
 
     public static Rigidbody camRb;
     public Vector3 camMovement;

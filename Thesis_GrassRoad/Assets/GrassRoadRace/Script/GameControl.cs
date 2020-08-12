@@ -52,7 +52,7 @@ public class GameControl : MonoBehaviour
         timer.stopTimer();
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        SceneManager.LoadScene(0);
+        //SceneManager.LoadScene(0);
     }
 }
 
