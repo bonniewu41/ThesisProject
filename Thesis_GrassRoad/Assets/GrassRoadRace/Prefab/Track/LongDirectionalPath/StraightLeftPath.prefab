@@ -155,11 +155,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3056374442261735495}
     m_Modifications:
-    - target: {fileID: 8015675752484559665, guid: 2169db9aebe8342f78327ab3bcc48da2,
-        type: 3}
-      propertyPath: m_Name
-      value: Straight2
-      objectReference: {fileID: 0}
     - target: {fileID: 8015675752484559664, guid: 2169db9aebe8342f78327ab3bcc48da2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -215,6 +210,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8015675752484559665, guid: 2169db9aebe8342f78327ab3bcc48da2,
+        type: 3}
+      propertyPath: m_Name
+      value: Straight2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2169db9aebe8342f78327ab3bcc48da2, type: 3}
 --- !u!4 &6944149290483643003 stripped
@@ -230,11 +230,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3056374442261735495}
     m_Modifications:
-    - target: {fileID: 8015675752484559665, guid: 2169db9aebe8342f78327ab3bcc48da2,
-        type: 3}
-      propertyPath: m_Name
-      value: Straight2 (2)
-      objectReference: {fileID: 0}
     - target: {fileID: 8015675752484559664, guid: 2169db9aebe8342f78327ab3bcc48da2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -289,6 +284,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8015675752484559665, guid: 2169db9aebe8342f78327ab3bcc48da2,
+        type: 3}
+      propertyPath: m_Name
+      value: Straight2 (2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2169db9aebe8342f78327ab3bcc48da2, type: 3}
@@ -455,16 +455,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2278557536814497075}
     m_Modifications:
-    - target: {fileID: 3760373977460245485, guid: ebd4043b17f5d4961ad42ba7603a3376,
-        type: 3}
-      propertyPath: m_Name
-      value: LeftTurn
-      objectReference: {fileID: 0}
-    - target: {fileID: 3760373977460245485, guid: ebd4043b17f5d4961ad42ba7603a3376,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 746050343852055943, guid: ebd4043b17f5d4961ad42ba7603a3376,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -519,6 +509,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3760373977460245485, guid: ebd4043b17f5d4961ad42ba7603a3376,
+        type: 3}
+      propertyPath: m_Name
+      value: LeftTurn
+      objectReference: {fileID: 0}
+    - target: {fileID: 3760373977460245485, guid: ebd4043b17f5d4961ad42ba7603a3376,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ebd4043b17f5d4961ad42ba7603a3376, type: 3}
@@ -910,11 +910,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3056374442261735495}
     m_Modifications:
-    - target: {fileID: 8015675752484559665, guid: 2169db9aebe8342f78327ab3bcc48da2,
-        type: 3}
-      propertyPath: m_Name
-      value: Straight2 (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 8015675752484559664, guid: 2169db9aebe8342f78327ab3bcc48da2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -969,6 +964,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8015675752484559665, guid: 2169db9aebe8342f78327ab3bcc48da2,
+        type: 3}
+      propertyPath: m_Name
+      value: Straight2 (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2169db9aebe8342f78327ab3bcc48da2, type: 3}

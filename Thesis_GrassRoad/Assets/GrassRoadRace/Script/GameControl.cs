@@ -14,6 +14,7 @@ public class GameControl : MonoBehaviour
     [SerializeField]
     private AudioSource gameMusic;
     private Timer timer;
+    private float backToMenuDelay = 10f;
     
     PlayerControls controls;
     /* ================================================ */
@@ -52,7 +53,12 @@ public class GameControl : MonoBehaviour
         timer.stopTimer();
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        //SceneManager.LoadScene(0);
+        Invoke("BackToMenu", backToMenuDelay);
+    }
+
+    void BackToMenu ()
+    {
+        SceneManager.LoadScene(0);
     }
 }
 

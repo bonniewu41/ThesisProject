@@ -2968,6 +2968,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2347359925128805845, guid: 0935a46ddfbd66d4dbd9704ee695b6b0,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2347359925128805845, guid: 0935a46ddfbd66d4dbd9704ee695b6b0,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2366332067612049588, guid: 0935a46ddfbd66d4dbd9704ee695b6b0,
         type: 3}
       propertyPath: m_Name

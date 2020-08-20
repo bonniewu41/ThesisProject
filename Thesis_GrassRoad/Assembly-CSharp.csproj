@@ -56,15 +56,11 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\GrassRoadRace\PlayerControls.cs" />
-     <Compile Include="Assets\GrassRoadRace\Script\CameraMove.cs" />
-     <Compile Include="Assets\GrassRoadRace\Script\CameraMove2.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\CombinedCameraMove.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\CrossHair.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\DelayedStart.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\EnterArea.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\GameControl.cs" />
-     <Compile Include="Assets\GrassRoadRace\Script\Head2CameraMove.cs" />
-     <Compile Include="Assets\GrassRoadRace\Script\HeadCameraMove.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\HeadGunFire.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\HitObstacle.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\MenuSystem\CanvasController.cs" />
@@ -74,12 +70,16 @@
      <Compile Include="Assets\GrassRoadRace\Script\MenuSystem\Panel.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\MenuSystem\SceneChanger.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\MenuSystem\Singleton.cs" />
-     <Compile Include="Assets\GrassRoadRace\Script\Natural2CameraMove.cs" />
-     <Compile Include="Assets\GrassRoadRace\Script\NaturalCameraMove.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\NaturalCrossHair.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\NaturalGunFire.cs" />
-     <Compile Include="Assets\GrassRoadRace\Script\NegatePositionTracking.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\NegateTracking.cs" />
+     <Compile Include="Assets\GrassRoadRace\Script\oldCameraMove\CameraMove.cs" />
+     <Compile Include="Assets\GrassRoadRace\Script\oldCameraMove\CameraMove2.cs" />
+     <Compile Include="Assets\GrassRoadRace\Script\oldCameraMove\Head2CameraMove.cs" />
+     <Compile Include="Assets\GrassRoadRace\Script\oldCameraMove\HeadCameraMove.cs" />
+     <Compile Include="Assets\GrassRoadRace\Script\oldCameraMove\Natural2CameraMove.cs" />
+     <Compile Include="Assets\GrassRoadRace\Script\oldCameraMove\NaturalCameraMove.cs" />
+     <Compile Include="Assets\GrassRoadRace\Script\oldCameraMove\NegatePositionTracking.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\PathManager.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\ScoringSystem.cs" />
      <Compile Include="Assets\GrassRoadRace\Script\SpawnTargets.cs" />
