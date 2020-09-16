@@ -17,7 +17,7 @@ public class TrialHitObstacle : MonoBehaviour
             ScoringSystem.scoreValue -= 10;
             ScoringSystem.hurdleNum += 1;
             characterHitPos = collision.gameObject.transform.position;
-            TrialHeadCameraMove.Penalty(characterHitPos, EnterArea.trigger_count); //calls the penalty function in CameraMove to modify the character position
+            TrialCameraMove.Penalty(characterHitPos, EnterArea.trigger_count); //calls the penalty function in CameraMove to modify the character position
         }
     }
 }

@@ -650,7 +650,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 572548461}
-  - component: {fileID: 572548462}
   - component: {fileID: 572548463}
   - component: {fileID: 572548465}
   - component: {fileID: 572548464}
@@ -679,23 +678,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &572548462
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 572548460}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a6d3d363f9348c41a626e7c8ff8e32b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  yaw: 0
-  pitch: 0
-  mouseSensitivity: 1
-  camMovement: {x: 0, y: 0, z: 0}
-  gameControl: {fileID: 1907552560}
 --- !u!54 &572548463
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1385,7 +1367,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Time Left: 07:00'
+  m_Text: 'Time Left: 06:00'
 --- !u!222 &911425553
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2875,7 +2857,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30e05655f71984022ba9b12ce6c7c74d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minutes: 7
+  minutes: 6
   seconds: 0
   timerText: {fileID: 911425552}
 --- !u!114 &1907552560
