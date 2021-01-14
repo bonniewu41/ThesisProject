@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/GrassRoadRace/Scene/Game2_Natural.unity
+- path: Assets/GrassRoadRace/Scene/Game1_Natural.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
